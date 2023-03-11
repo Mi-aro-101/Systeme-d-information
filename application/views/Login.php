@@ -14,16 +14,16 @@
         <div class = 'row'>
             <div class = 'col-4'></div>
             <div class = 'col-4'>
-                <form method="" action="">
-                    <div class="mb-3">
+                <form method="post" action=<?php echo base_url('index.php/Login/check');?>>
+                    <div class="mb-3"> 
                         <label for="exampleInputEmail1" class="form-label">Nom Entite</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name = "nom" value = "Mami Corp">
+                        <input type="test" class="form-control"  aria-describedby="emailHelp" name = "nom" value = "Mami Corp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name = "pwd" value = "a">
+                        <input type="password" class="form-control" name = "pwd" value = "a">
                     </div>
-                    <div id="emailHelp" class="form-text">Not yet member ?  <a href = <?php echo base_url('index.php/FormulaireAjoutEntite');?>  class = "text-decoration-none">Click Here</a></div>
+                    <div class="form-text">Not yet member ?  <a href = <?php echo base_url('index.php/FormulaireAjoutEntite');?>  class = "text-decoration-none">Click Here</a></div>
                     <br>
                     <center><button type="submit" class="btn btn-primary">Submit</button></center>
                 </form>
