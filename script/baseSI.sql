@@ -2,8 +2,6 @@ CREATE DATABASE si;
 
 \c si
 
---Mamisoa malalako
-
 CREATE TABLE entite(
     idEntite SERIAL PRIMARY KEY,
     nomEntite VARCHAR(80),
@@ -30,8 +28,6 @@ CREATE TABLE exercice(
     finExercice DATE,
     FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
 );
-
---Miaro cheri
 
 
 --Liantsiky sefo
