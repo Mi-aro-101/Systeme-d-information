@@ -3,13 +3,13 @@ CREATE DATABASE si;
 \c si
 
 CREATE TABLE entite(
-    idEntite INT,
+    idEntite SERIAL PRIMARY KEY,
     nomEntite VARCHAR(80),
     passwd VARCHAR(30)
 );
 
 CREATE TABLE details(
-    idEntite SERIAL,
+    idEntite INT,
     nomFondateur VARCHAR(80),
     numeroFiscale VARCHAR(80),
     siege VARCHAR(80),
@@ -17,6 +17,22 @@ CREATE TABLE details(
     Objet VARCHAR(80),
     numeroStatistique VARCHAR(80),
     deviseTenueDeCompte VARCHAR(80),
+    deviseEquivalence VARCHAR(20),
+    FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
+);
+
+CREATE TABLE exercice(
+    idExercice SERIAL PRIMARY KEY,
+    idEntite INT,
+    debutExercice DATE,
+    finExercice DATE,
+    FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
+);
+
+
+--Liantsiky sefo
+CREATE TABLE journalAchat(
+    idJournal SERIAL PRIMARY KEY,
     deviseEquivalence VARCHAR(20)
 );
 
@@ -26,7 +42,7 @@ CREATE TABLE exercice(
     finExercice DATE
 );
 
-CREATE TABLE journalAchat(
+CREATE TABLE journalAchŒat(
     idJournal SERIAL,
     dateEntree DATE,
     M VARCHAR(120),
