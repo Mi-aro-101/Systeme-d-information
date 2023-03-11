@@ -8,8 +8,8 @@ class Comptable_model extends CI_Model {
      * @param $libelle is the name of the 'compte'
      */
     public function insertComptable($code, $libelle){
-        $query = ("INSERT INTO plancomptable VALUES(default, '%s', '%s')");
-        $query = sprintf($query, $code, $libelle);
+        $query = ("INSERT INTO plancomptable VALUES(%s, '%s', '%s')");
+        $query = sprintf($query, $_SESSION['ididentite'],$code, $libelle);
         $this->db->query($query);
     }
 }

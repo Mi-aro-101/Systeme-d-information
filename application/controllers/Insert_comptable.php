@@ -13,6 +13,9 @@ class Insert_comptable extends CI_Controller {
 		$this->load->view('Insert_Comptable');
 	}
 
+    /**
+     * @param $code to force à avoir 5 caractères pas plus pas moins
+     */
     public function extendStrlen($code){
         while(strlen($code) < 5){
             $code=$code.'0';
@@ -21,6 +24,10 @@ class Insert_comptable extends CI_Controller {
         return $code;
     }
 
+    /**
+     * insert planComptable function
+     * use extendStrlen to force the compte comptable ho 5 caractères
+     */
     public function Insert(){
         $code = $_POST['code'];
         if(strlen($code) < 5){
@@ -32,6 +39,29 @@ class Insert_comptable extends CI_Controller {
     }
 
     public function uploadcsv(){
+        $handle = fopen($_FILES['file']['tmp_name'], 'r');
 
+        $this->db->query('begin');
+        while(($data = fgetcsv($handle, 10000, ',')) !== false){
+            $i++;
+            if(i == 1){
+                continue;
+            }
+
+            if(strlen($data[0]) < 5){
+                $data[0] = $this->extendStrlen($data[0])
+            }
+
+            try {
+                $this->insertComptable($data[0], $data[1]);
+                $this->db->query('commit');
+            } catch (Exception $e) {
+                $this->db->query('rollback');
+                throw $e;
+            }
+            finally{
+                $this->db->query('end');
+            }
+        }
     }
 }

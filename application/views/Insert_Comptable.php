@@ -32,7 +32,7 @@
 enctype='multipart/form-data'>
         <div>
             <center><label for="formFileLg" class="form-label">Inserer un fichier CSV</label></center>
-            <input class="form-control form-control-lg" id="formFileLg" type="file">
+            <input class="form-control form-control-lg" id="formFileLg" type="file" name="file">
         </div>
         <br>
         <center><div class="mb-3">
