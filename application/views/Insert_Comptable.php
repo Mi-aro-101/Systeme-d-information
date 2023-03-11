@@ -28,7 +28,8 @@
     </form>
 <hr>
     <center><h1>Ou</h1></center>
-    <form action="<?php echo base_url('index.php/Insert_comptable/uploadcsv'); ?>" method="post">
+    <form action="<?php echo base_url('index.php/Insert_comptable/uploadcsv'); ?>" method="post"
+enctype='multipart/form-data'>
         <div>
             <center><label for="formFileLg" class="form-label">Inserer un fichier CSV</label></center>
             <input class="form-control form-control-lg" id="formFileLg" type="file">
