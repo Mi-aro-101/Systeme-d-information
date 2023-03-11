@@ -5,7 +5,7 @@ class Comptable_model extends CI_Model {
 
     /**
      * @param $code is the 'compte' of the plancomptable
-     *@param $libelle is the name of the 'compte'
+     * @param $libelle is the name of the 'compte'
      */
     public function insertComptable($code, $libelle){
         $query = ("INSERT INTO plancomptable VALUES(default, '%s', '%s')");
