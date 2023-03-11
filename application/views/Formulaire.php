@@ -10,7 +10,7 @@
 <body>
     <center><h2 class="text-capitalize" >Formulaire d'Insertion d'Entite</h2></center>
     <br>
-    <form  method="" action="">
+    <form  method="post" action="<?php base_url("index.php/FormEntite/");?>">
         <div class="row">
             <div class="col-6">
                 <div class="mb-3">

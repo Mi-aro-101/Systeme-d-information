@@ -48,6 +48,17 @@ create table plantiers(
 --Liantsiky sefo
 CREATE TABLE journalAchat(
     idJournal SERIAL PRIMARY KEY,
+    deviseEquivalence VARCHAR(20)
+);
+
+CREATE TABLE exercice(
+    idExercice SERIAL,
+    debutExercice DATE,
+    finExercice DATE
+);
+
+CREATE TABLE journalAchŒat(
+    idJournal SERIAL,
     dateEntree DATE,
     M VARCHAR(120),
     CompteGeneral VARCHAR(80),
