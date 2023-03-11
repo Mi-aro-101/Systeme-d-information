@@ -69,4 +69,11 @@ class Entite extends CI_Model {
             $this->db->query("END");  
         }
     }
+
+    public function checkLogin($nom,$pwd){
+        $sql = "SELECT nom,idEntite FROM entite WHERE nom = '%s' AND passwd = '$%s'";
+        $query = $this->db->query($sql);
+        $value = $query->row_array();
+        return $value;
+    }
 }
