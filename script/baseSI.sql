@@ -2,6 +2,7 @@ CREATE DATABASE si;
 
 \c si
 
+--Mamisoa
 CREATE TABLE entite(
     idEntite SERIAL PRIMARY KEY,
     nomEntite VARCHAR(80),
@@ -29,6 +30,20 @@ CREATE TABLE exercice(
     FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
 );
 
+--Miaro
+create table plancomptable(
+    identite INT,
+    Code VARCHAR(5),
+    Intitule VARCHAR(50),
+    FOREIGN KEY (identite) REFERENCES entite(idEntite)
+);
+
+create table plantiers(
+    identite INT,
+    NumeroCompte VARCHAR(13),
+    Intitule VARCHAR(50),
+    FOREIGN KEY (identite) REFERENCES entite(idEntite)
+);
 
 --Liantsiky sefo
 CREATE TABLE journalAchat(
