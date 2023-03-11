@@ -5,10 +5,10 @@ class Entite extends CI_Model {
 
 
     /**
-     * get the current value of the serial idEntite 
-     * @param void 
+     * get the current value of the serial idEntite
+     * @param void
      */
-    
+
 	public function getCurrval(){
         $sql = "SELECT currval('entite_identite_seq')";
         $query = $this->db->query($sql);
@@ -19,7 +19,7 @@ class Entite extends CI_Model {
     /**
      * get the date of the end of one entity exercice
      * @param date
-     */ 
+     */
     public function getNextYearDate($date){
         list($year,$month,$day) = explode("-",$date);
         $year = "".intval($year) + 1;
@@ -47,8 +47,8 @@ class Entite extends CI_Model {
      */
     public function insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd)
 	{
-        try{   
-            $this->db->query("BEGIN");          
+        try{
+            $this->db->query("BEGIN");
             $sql = "INSERT INTO Entite VALUES(default,'%s','%s')";
             $sql = sprintf($sql,$nomSociete,$pwd);
             $this->db->query($sql);
@@ -63,17 +63,19 @@ class Entite extends CI_Model {
             $this->db->query("COMMIT");
         }
         catch (Exception $e) {
-            $this->db->query("ROLLBACK");  
+            $this->db->query("ROLLBACK");
             throw $e;
         }finally{
-            $this->db->query("END");  
+            $this->db->query("END");
         }
     }
 
     public function checkLogin($nom,$pwd){
-        $sql = "SELECT idEntite FROM entite WHERE nomentite = '%s' AND passwd = '$%s'";
+        $sql = "SELECT idEntite FROM entite WHERE nomentite = '%s' AND passwd = '%s'";
+        $sql = sprintf($sql,$nom,$pwd);
+        echo $sql;
         $query = $this->db->query($sql);
         $value = $query->row_array();
-        return $value;
+        return $value['identite'];
     }
 }

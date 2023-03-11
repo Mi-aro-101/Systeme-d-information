@@ -35,25 +35,25 @@ class Insert_comptable extends CI_Controller {
         }
         $libelle = $_POST['libelle'];
         echo $code;
-        // $this->insertComptable($code, $libelle);
+        $this->Comptable_model->insertComptable($code, $libelle);
     }
 
     public function uploadcsv(){
         $handle = fopen($_FILES['file']['tmp_name'], 'r');
-
+        $i = 0;
         $this->db->query('begin');
         while(($data = fgetcsv($handle, 10000, ',')) !== false){
             $i++;
-            if(i == 1){
+            if($i == 1){
                 continue;
             }
 
             if(strlen($data[0]) < 5){
-                $data[0] = $this->extendStrlen($data[0])
+                $data[0] = $this->extendStrlen($data[0]);
             }
 
             try {
-                $this->insertComptable($data[0], $data[1]);
+                $this->Comptable_model->insertComptable($data[0], $data[1]);
                 $this->db->query('commit');
             } catch (Exception $e) {
                 $this->db->query('rollback');
