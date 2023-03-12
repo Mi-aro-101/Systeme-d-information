@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1>Welcome to My Site!</h1>
 
 	<div id = "body">
-		<p><a href = <?php echo base_url('index.php/Login/');?>  class = "text-decoration-none">Login</a></p>
+		<p><a href = <?php echo base_url('index.php/Login');?>  class = "text-decoration-none">Login</a></p>
 	</div>
 </div>
 
