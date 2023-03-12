@@ -15,7 +15,7 @@ class FormEntite extends CI_Controller {
             $numFisc = $this->input->post('numeroFiscale');
             $siege = $this->input->post('siege');
             $dateCreation = $this->input->post('creation');
-            $dateDebut = $this->input->post('debuExo');
+            $dateDebut = $this->input->post('debutExo');
             $objet = $this->input->post('objet');
             $numStat = $this->input->post('numStat');
             $numReg = $this->input->post('numRegistre');
@@ -23,7 +23,7 @@ class FormEntite extends CI_Controller {
             $deviseEq = $this->input->post('equivalence');
             $pwd = $this->input->post('mdp');
             $this->Entite->insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd);
-            // redirect(site_url('index.php/Login'));
+            redirect(site_url('index.php/Login'));
         }catch(Exception $e){
             echo 'Exception reçue : ',  $e->getMessage(), "\n";
         }

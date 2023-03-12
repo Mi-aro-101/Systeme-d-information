@@ -10,10 +10,9 @@ class Entite extends CI_Model {
      */
     
 	public function getCurrval(){
-        $sql = "SELECT currval('entite_identite_seq') as currval";
-        echo $sql;
+        $sql = "SELECT currval('entite_identite_seq')";
         $query = $this->db->query($sql);
-        $value = $query->row_arrray();
+        $value = $query->row_array();
         return $value['currval'];
     }
 
@@ -28,7 +27,7 @@ class Entite extends CI_Model {
             $month = '03';
             $day = '01';
         }
-        return $year.$month.$day;
+        return $year."-".$month."-".$day;
     }
 
     /**
@@ -52,16 +51,13 @@ class Entite extends CI_Model {
             $this->db->query("BEGIN");          
             $sql = "INSERT INTO Entite VALUES(default,'%s','%s')";
             $sql = sprintf($sql,$nomSociete,$pwd);
-            echo $sql;
             $this->db->query($sql);
-            $sql = "INSERT INTO details VALUES(%i,'%s','%s','%s','%s','%s','%s','%s','%s')";
             $id = $this->getCurrval();
-            echo $id;
-            $sql = sprintf($sql,$id,$val,$nomFondateur,$numFisc,$siege,$dateCreation,$objet,$numStat,$deviseTC,$deviseEq);
-            echo $sql;
+            $sql = "INSERT INTO details VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s')";
+            $sql = sprintf($sql,$id,$nomFondateur,$numFisc,$siege,$dateCreation,$objet,$numStat,$deviseTC,$deviseEq);
             $this->db->query($sql);
-            $sql = "INSERT INTO exercice VALUES(default,'%s','%s')";
-            $sql = sprintf($sql,$dateDebut,$this->getNextYearDate($dateDebut));
+            $sql = "INSERT INTO exercice VALUES(default,%s,'%s','%s')";
+            $sql = sprintf($sql,$id,$dateDebut,$this->getNextYearDate($dateDebut));
             echo $sql;
             $this->db->query($sql);
             $this->db->query("COMMIT");
