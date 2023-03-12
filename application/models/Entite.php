@@ -3,13 +3,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Entite extends CI_Model {
 
-	public function getCurrval()
-    {
-        $sql = "SELECT currval('entite_identite_seq')";
+
+    /**
+     * get the current value of the serial idEntite 
+     * @param void 
+     */
+    
+	public function getCurrval(){
+        $sql = "SELECT currval('entite_identite_seq') as currval";
+        echo $sql;
         $query = $this->db->query($sql);
         $value = $query->row_arrray();
         return $value['currval'];
     }
+
+    /**
+     * get the date of the end of one entity exercice
+     * @param date
+     */ 
     public function getNextYearDate($date){
         list($year,$month,$day) = explode("-",$date);
         $year = "".intval($year) + 1;
@@ -19,24 +30,47 @@ class Entite extends CI_Model {
         }
         return $year.$month.$day;
     }
+
+    /**
+     * insert the form into the database
+     * @param nom_Fondateur
+     * @param nom_Societe
+     * @param numero_Fiscale
+     * @param siege
+     * @param date_de_Creation_Entite
+     * @param date_Debut_Exercice
+     * @param objet
+     * @param numStat
+     * @param numero_Registre
+     * @param devise_TC
+     * @param devise_Equivalente
+     * @param password
+     */
     public function insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd)
 	{
-        try{             
-            $sql = "BEGIN;INSERT INTO Entite VALUES(default,'%s','%s')";
+        try{   
+            $this->db->query("BEGIN");          
+            $sql = "INSERT INTO Entite VALUES(default,'%s','%s')";
             $sql = sprintf($sql,$nomSociete,$pwd);
+            echo $sql;
             $this->db->query($sql);
-            $id = getCurrval();
             $sql = "INSERT INTO details VALUES(%i,'%s','%s','%s','%s','%s','%s','%s','%s')";
+            $id = $this->getCurrval();
+            echo $id;
             $sql = sprintf($sql,$id,$val,$nomFondateur,$numFisc,$siege,$dateCreation,$objet,$numStat,$deviseTC,$deviseEq);
+            echo $sql;
             $this->db->query($sql);
             $sql = "INSERT INTO exercice VALUES(default,'%s','%s')";
-            $sql = sprintf($sql,$dateDebut,getNextYearDate($dateDebut));
+            $sql = sprintf($sql,$dateDebut,$this->getNextYearDate($dateDebut));
+            echo $sql;
             $this->db->query($sql);
             $this->db->query("COMMIT");
         }
         catch (Exception $e) {
             $this->db->query("ROLLBACK");  
             throw $e;
+        }finally{
+            $this->db->query("END");  
         }
     }
 }

@@ -75,6 +75,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p><a href = <?php echo base_url('index.php/Login');?>  class = "text-decoration-none">Login</a></p>
 	</div>
 </div>
-
 </body>
 </html>

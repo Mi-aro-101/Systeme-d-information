@@ -5,11 +5,10 @@ class FormEntite extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->models('Entite');
+        $this->load->model('Entite');
     }
 
-	public function index()
-	{
+	public function index(){
         try{
             $nomFondateur = $this->input->post('fondateur');
             $nomSociete = $this->input->post('nomSociete');
@@ -23,8 +22,8 @@ class FormEntite extends CI_Controller {
             $deviseTC = $this->input->post('tenueCompte');
             $deviseEq = $this->input->post('equivalence');
             $pwd = $this->input->post('mdp');
-            $this->entite->insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd);
-            redirect(site_url('index.php/Login'));
+            $this->Entite->insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd);
+            // redirect(site_url('index.php/Login'));
         }catch(Exception $e){
             echo 'Exception reçue : ',  $e->getMessage(), "\n";
         }
