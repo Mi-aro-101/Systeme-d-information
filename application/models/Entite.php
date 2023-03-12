@@ -71,7 +71,7 @@ class Entite extends CI_Model {
     }
 
     public function checkLogin($nom,$pwd){
-        $sql = "SELECT idEntite FROM entite WHERE nom = '%s' AND passwd = '$%s'";
+        $sql = "SELECT idEntite FROM entite WHERE nomentite = '%s' AND passwd = '$%s'";
         $query = $this->db->query($sql);
         $value = $query->row_array();
         return $value;
