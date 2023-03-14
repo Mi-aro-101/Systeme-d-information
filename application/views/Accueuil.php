@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id = "container">
-	<h1>Accueuil</h1>
+	<h1>Accueil</h1>
 
 	<div id = "body">
 		<p><a href = <?php echo base_url('index.php/Insert_comptable');?>  class = "text-decoration-none">Inserer Plan Comptable</a></p>
