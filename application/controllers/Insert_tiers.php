@@ -1,54 +1,37 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Insert_comptable extends CI_Controller {
+class Insert_tiers extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Comptable_model');
+        $this->load->model('Tiers_model');
     }
 
 	public function index()
 	{
-		$this->load->view('Insert_Comptable');
+		$this->load->view('Insert_Tiers');
 	}
 
-    /**
-     * @param code is the code inserted that need to be length checked
-     */
     public function checkCode($code){
-        if(strlen($code) < 5){
-            $code = $this->extendStrlen($code);
+        if(strlen($code) > 13){
+            throw new Exception("Votre code de compte depasse les 13 caracteres");
         }
-        else if(strlen($code)){
-            throw new Exception('La longueur de votre code doit etre <= 5');
+        else {
+            return true;
         }
-
-        return $code;
     }
 
     /**
-     * @param $code is the code(compte) to force à avoir 5 caractères pas plus pas moins
+     *The function that will call the insert in tiers_model
      */
-    public function extendStrlen($code){
-        while(strlen($code) < 5){
-            $code=$code.'0';
-        }
-
-        return $code;
-    }
-
-    /**
-     * insert planComptable function
-     * use extendStrlen to force the compte comptable ho 5 caractères
-     */
-    public function Insert(){
+    public function insert(){
         $code = $_POST['code'];
         try{
             $this->checkCode($code);
             $libelle = $_POST['libelle'];
             echo $code;
-            $this->Comptable_model->insertComptable($code, $libelle);
+            $this->Tiers_model->insertTiers($code, $libelle);
         }catch(Exception $e){
             echo $e->getMessage();
         }
@@ -58,7 +41,7 @@ class Insert_comptable extends CI_Controller {
      * Check the columnm from the csv
      */
     public function checkColumn($data){
-        if(strcasecmp($data[0], 'code') == 1 || strcasecmp($data[1], 'libelle') == 1){
+        if(strcasecmp($data[0], 'code') == 1 || strcasecmp($data[1], 'intitule') == 1){
             throw new Exception('Les noms de colonne ne correspondent pas');
         }
     }
@@ -79,6 +62,7 @@ class Insert_comptable extends CI_Controller {
                     break;
                 }
             }
+
             $i++;
 
             if($i == 1){
@@ -87,7 +71,8 @@ class Insert_comptable extends CI_Controller {
 
             try{
                 $this->checkCode($data[0]);
-                $this->Comptable_model->insertComptable($data[0], $data[1]);
+
+                $this->Tiers_model->insertTiers($data[0], $data[1]);
                 $this->db->query('commit');
             }catch(Exception $e){
                 echo $e->getMessage();
