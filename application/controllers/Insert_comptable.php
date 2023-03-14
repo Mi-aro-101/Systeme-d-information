@@ -14,7 +14,21 @@ class Insert_comptable extends CI_Controller {
 	}
 
     /**
-     * @param $code to force à avoir 5 caractères pas plus pas moins
+     * @param code is the code inserted that need to be length checked
+     */
+    public function checkCode($code){
+        if(strlen($code) < 5){
+            $code = $this->extendStrlen($code);
+        }
+        else if(strlen($code)){
+            throw new Exception('La longueur de votre code doit etre <= 5');
+        }
+
+        return $code;
+    }
+
+    /**
+     * @param $code is the code(compte) to force à avoir 5 caractères pas plus pas moins
      */
     public function extendStrlen($code){
         while(strlen($code) < 5){
@@ -30,31 +44,56 @@ class Insert_comptable extends CI_Controller {
      */
     public function Insert(){
         $code = $_POST['code'];
-        if(strlen($code) < 5){
-            $code = $this->extendStrlen($code);
+        try{
+            $this->checkCode($code);
+            $libelle = $_POST['libelle'];
+            echo $code;
+            $this->Comptable_model->insertComptable($code, $libelle);
+        }catch(Exception $e){
+            echo $e->getMessage();
         }
-        $libelle = $_POST['libelle'];
-        echo $code;
-        $this->Comptable_model->insertComptable($code, $libelle);
     }
 
+    /**
+     * Check the columnm from the csv 
+     */
+    public function checkColumn($data){
+        if(strcasecmp($data[0], 'code') == 1 || strcasecmp($data[1], 'libelle') == 1){
+            throw new Exception('Les noms de colonne ne correspondent pas');
+        }
+    }
+
+    /**
+     * function that will upload the csv file imported
+     */
     public function uploadcsv(){
         $handle = fopen($_FILES['file']['tmp_name'], 'r');
         $i = 0;
         $this->db->query('begin');
         while(($data = fgetcsv($handle, 10000, ',')) !== false){
+            echo strcasecmp($data[1], 'Libelle');
+            try{
+                $this->checkColumn($data);
+            }catch(Exception $e){
+                echo $e->getMessage();
+                break;
+            }
             $i++;
+
             if($i == 1){
                 continue;
             }
 
-            if(strlen($data[0]) < 5){
-                $data[0] = $this->extendStrlen($data[0]);
+            try{
+                $this->checkCode($data[0]);
+            }catch(Exception $e){
+                echo $e->getMessage();
             }
 
             try {
                 $this->Comptable_model->insertComptable($data[0], $data[1]);
                 $this->db->query('commit');
+                redirect("index.php/Accueil");
             } catch (Exception $e) {
                 $this->db->query('rollback');
                 throw $e;
