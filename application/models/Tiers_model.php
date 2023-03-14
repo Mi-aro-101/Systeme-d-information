@@ -1,32 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Comptable_model extends CI_Model {
+class Tiers_model extends CI_Model {
 
     /**
      * @param $code is the 'compte' of the plancomptable
      * @param $libelle is the name of the 'compte'
      */
-    public function insertComptable($code, $libelle){
-        $query = ("INSERT INTO plancomptable VALUES(%s, '%s', '%s')");
+    public function insertTiers($code, $libelle){
+        $query = ("INSERT INTO plantiers VALUES(%s, '%s', '%s')");
         $query = sprintf($query, $_SESSION['identity'],$code, $libelle);
         $this->db->query($query);
     }
 
     public function findAll(){
-        $query = ("select * from plancomptable");
+        $query = ("select * from plantiers");
         $query = $this->db->query($query);
-        $compte = array();
+        $tiers = array();
 
         foreach($query->result_array() as $row){
-            $compte[] = $row;
+            $tiers[] = $row;
         }
 
-        return $compte;
+        return $tiers;
     }
 
     public function remove($code){
-        $query = ("DELETE from plancomptable where code='%s'");
+        $query = ("DELETE from plantiers where numerocompte='%s'");
+        echo $query;
         $query = sprintf($query, $code);
         $this->db->query($query);
     }
