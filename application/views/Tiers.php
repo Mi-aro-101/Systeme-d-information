@@ -20,8 +20,8 @@
         <tr>
                 <td><?php echo $tab['numerocompte']; ?></td>
                 <td><?php echo $tab['intitule']; ?></td>
-                <td><a href=<?php echo base_url('index.php/Tiers_interaction/Supprimer/'.$tab["numerocompte"].'');?>><button>Supprimer</button class="btn btn-danger"></a></td>
-                <td><a href="<?php echo base_url('index.php/Tiers_interaction/Modifier/'.$tab["numerocompte"].'');?>"><button>Modifier</button class="btn btn-warning"></a></td>
+                <td><a href=<?php echo base_url('index.php/Tiers_interaction/Supprimer/'.$tab["idplantiers"].'');?>><button class="btn btn-danger">Supprimer</button class="btn btn-danger"></a></td>
+                <td><a href="<?php echo base_url('index.php/Tiers_interaction/Modifier/'.$tab["idplantiers"].'');?>"><button class="btn btn-warning">Modifier</button class="btn btn-warning"></a></td>
         </tr>
         <?php } ?>
     </table>

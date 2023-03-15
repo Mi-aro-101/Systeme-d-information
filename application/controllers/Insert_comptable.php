@@ -20,7 +20,7 @@ class Insert_comptable extends CI_Controller {
         if(strlen($code) < 5){
             $code = $this->extendStrlen($code);
         }
-        else if(strlen($code)){
+        else if(strlen($code) > 5){
             throw new Exception('La longueur de votre code doit etre <= 5');
         }
 
@@ -52,6 +52,7 @@ class Insert_comptable extends CI_Controller {
         }catch(Exception $e){
             echo $e->getMessage();
         }
+        redirect("index.php/Accueil");
     }
 
     /**

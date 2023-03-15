@@ -2,6 +2,9 @@ CREATE DATABASE si;
 
 \c si;
 
+--Mamorona table DEVISE hono :
+    -- Date
+
 --Mamisoa
 CREATE TABLE entite(
     idEntite SERIAL PRIMARY KEY,
@@ -30,6 +33,17 @@ CREATE TABLE exercice(
     finExercice DATE,
     FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
 );
+
+create table Devise(
+    idDevise SERIAL PRIMARY KEY,
+    Nom VARCHAR(20)
+);
+create table equivalence(
+    idEquivalence SERIAL PRIMARY KEY,
+    idDevise int,
+    taux DOUBLE PRECISION,
+    Dateequivalence DATE
+)
     --VIEW
 CREATE VIEW ListeDetails as SELECT e.idEntite,e.nomEntite,d.nomFondateur,d.numeroFiscale,d.siege,d.dateDeCreation,d.objet,d.numeroStatistique,d.numeroRegistre,d.deviseTenueDeCompte,d.deviseEquivalence    
 FROM entite as e JOIN details as d 
@@ -37,6 +51,7 @@ FROM entite as e JOIN details as d
 
 --Miaro
 create table plancomptable(
+    idPlanComptable SERIAL PRIMARY KEY,
     identite INT,
     Code VARCHAR(5),
     Intitule VARCHAR(50),
@@ -44,6 +59,7 @@ create table plancomptable(
 );
 
 create table plantiers(
+    idPlanTiers SERIAL PRIMARY KEY,
     identite INT,
     NumeroCompte VARCHAR(13),
     Intitule VARCHAR(50),

@@ -17,6 +17,34 @@ class Tiers_interaction extends CI_Controller {
     public function Supprimer($code){
         $this->Tiers_model->remove($code);
         redirect('index.php/Tiers_interaction');
+    }
 
+    public function Modifier($id){
+        $table = $this->Tiers_model->getbyId($id);
+        $table = array('table' => $table);
+        $this->load->view('FormModif', $table);
+    }
+
+    public function checkCode($code){
+        if(strlen($code) > 13){
+            throw new Exception("Votre code de compte depasse les 13 caracteres");
+        }
+        else {
+            return true;
+        }
+    }
+
+    public function validModification(){
+        $code = $_GET['numerocompte'];
+        $intitule = $_GET['intitule'];
+        $idplantiers = $_GET['idplantiers'];
+        try{
+            $this->checkCode($code);
+            $this->Tiers_model->modifier($idplantiers, $code, $intitule);
+            redirect('index.php/Tiers_interaction');
+        }catch(Exception $e){
+            echo $e;
+            echo $e->getMessage();
+        }
     }
 }
