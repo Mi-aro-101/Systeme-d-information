@@ -1,6 +1,6 @@
 CREATE DATABASE si;
 
-\c si
+\c si;
 
 --Mamisoa
 CREATE TABLE entite(
@@ -51,27 +51,25 @@ create table plantiers(
 );
 
 --Liantsiky sefo
-CREATE TABLE journalAchat(
-    idJournal SERIAL PRIMARY KEY,
-    deviseEquivalence VARCHAR(20)
+CREATE TABLE codeJournal (
+    idCodeJournal serial primary key,
+    identite INT,
+    Code VARCHAR(5),
+    Intitule VARCHAR(100),
+    FOREIGN KEY (identite) REFERENCES entite(idEntite)    
 );
+-- CREATE TABLE journalAchat(
+--     idJournal SERIAL PRIMARY KEY,
+--     deviseEquivalence VARCHAR(20)
+-- );
 
-CREATE TABLE exercice(
-    idExercice SERIAL,
-    debutExercice DATE,
-    finExercice DATE
-);
+-- CREATE TABLE exercice(
+--     idExercice SERIAL,
+--     debutExercice DATE,
+--     finExercice DATE
+-- );
 
-CREATE TABLE journalAchŒat(
-    idJournal SERIAL,
-    dateEntree DATE,
-    M VARCHAR(120),
-    CompteGeneral VARCHAR(80),
-    CompteTiers VARCHAR(80),
-    Libelle VARCHAR(120),
-    Debit DOUBLE PRECISION DEFAULT 0,
-    Credit DOUBLE PRECISION DEFAULT 0
-);
+
 
 -- CREATE TABLE journalVente(
 --     idJournal SERIAL,
