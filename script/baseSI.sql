@@ -29,6 +29,10 @@ CREATE TABLE exercice(
     finExercice DATE,
     FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
 );
+    --VIEW
+CREATE VIEW ListeDetails as SELECT e.idEntite,e.nomEntite,d.nomFondateur,d.numeroFiscale,d.siege,d.dateDeCreation,d.objet,d.numeroStatistique,d.deviseTenueDeCompte,d.deviseEquivalence    
+FROM entite as e JOIN details as d 
+    ON e.idEntite = d.idEntite;
 
 --Miaro
 create table plancomptable(

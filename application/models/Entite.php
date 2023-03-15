@@ -73,9 +73,16 @@ class Entite extends CI_Model {
     public function checkLogin($nom,$pwd){
         $sql = "SELECT idEntite FROM entite WHERE nomentite = '%s' AND passwd = '%s'";
         $sql = sprintf($sql,$nom,$pwd);
-        echo $sql;
         $query = $this->db->query($sql);
         $value = $query->row_array();
         return $value['identite'];
+    }
+
+    public function findAll($id){
+        $sql = "SELECT * FROM ListeDetails WHERE identite = %s";
+        $sql = sprintf($sql,$id);
+        $query = $this->db->query($sql);
+        $value = $query->row_array();
+        return $value;
     }
 }
