@@ -53,12 +53,30 @@ class Entite extends CI_Model {
             $sql = sprintf($sql,$nomSociete,$pwd);
             $this->db->query($sql);
             $id = $this->getCurrval();
-            $sql = "INSERT INTO details VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s')";
-            $sql = sprintf($sql,$id,$nomFondateur,$numFisc,$siege,$dateCreation,$objet,$numStat,$deviseTC,$deviseEq);
+            $sql = "INSERT INTO details VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+            $sql = sprintf($sql,$id,$nomFondateur,$numFisc,$siege,$dateCreation,$objet,$numStat,$numReg,$deviseTC,$deviseEq);
             $this->db->query($sql);
             $sql = "INSERT INTO exercice VALUES(default,%s,'%s','%s')";
             $sql = sprintf($sql,$id,$dateDebut,$this->getNextYearDate($dateDebut));
             echo $sql;
+            $this->db->query($sql);
+            $this->db->query("COMMIT");
+        }
+        catch (Exception $e) {
+            $this->db->query("ROLLBACK");
+            throw $e;
+        }finally{
+            $this->db->query("END");
+        }
+    }
+
+    public function update($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$id){
+        try{
+            $this->db->query("BEGIN");
+            $sql = "UPDATE Entite SET nomentite = '%s' WHERE identite = %s";
+            $sql = sprintf($sql,$nomSociete,$id);
+            $sql = "UPDATE details SET nomfondateur = %s,numerofiscale = '%s',siege = '%s',datedecreation = '%s',objet = '%s',numerostatistique = '%s',numeroRegistre = '%s',devisetenuedecompte = '%s',deviseequivalence = '%s'WHERE identite = %s";
+            $sql = sprintf($sql,$id,$nomFondateur,$numFisc,$siege,$dateCreation,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$id);
             $this->db->query($sql);
             $this->db->query("COMMIT");
         }
@@ -81,6 +99,7 @@ class Entite extends CI_Model {
     public function findAll($id){
         $sql = "SELECT * FROM ListeDetails WHERE identite = %s";
         $sql = sprintf($sql,$id);
+        echo $sql;
         $query = $this->db->query($sql);
         $value = $query->row_array();
         return $value;

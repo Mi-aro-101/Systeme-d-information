@@ -17,6 +17,7 @@ CREATE TABLE details(
     dateDeCreation DATE,
     Objet VARCHAR(80),
     numeroStatistique VARCHAR(80),
+    numeroRegistre VARCHAR(80),
     deviseTenueDeCompte VARCHAR(80),
     deviseEquivalence VARCHAR(20),
     FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
@@ -30,7 +31,7 @@ CREATE TABLE exercice(
     FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
 );
     --VIEW
-CREATE VIEW ListeDetails as SELECT e.idEntite,e.nomEntite,d.nomFondateur,d.numeroFiscale,d.siege,d.dateDeCreation,d.objet,d.numeroStatistique,d.deviseTenueDeCompte,d.deviseEquivalence    
+CREATE VIEW ListeDetails as SELECT e.idEntite,e.nomEntite,d.nomFondateur,d.numeroFiscale,d.siege,d.dateDeCreation,d.objet,d.numeroStatistique,d.numeroRegistre,d.deviseTenueDeCompte,d.deviseEquivalence    
 FROM entite as e JOIN details as d 
     ON e.idEntite = d.idEntite;
 

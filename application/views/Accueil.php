@@ -78,7 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <p><a href = <?php echo base_url('index.php/');?>  class = "text-decoration-none">Afficher Code Compte</a></p>
 		<p><a href = <?php echo base_url('index.php/');?>  class = "text-decoration-none">Aficher Code journal</a></p>
         <p><a href = <?php echo base_url('index.php/');?>  class = "text-decoration-none">Affcher Compte Tiers</a></p>
-		<p><a href = <?php echo base_url('index.php/');?>  class = "text-decoration-none">Afficher details Entite</a></p>
+		<p><a href = <?php echo base_url('index.php/DetailsEntite');?>  class = "text-decoration-none">Afficher details Entite</a></p>
 	</div>
 </div>
 </body>
