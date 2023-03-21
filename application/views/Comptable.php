@@ -8,6 +8,16 @@
     <link rel = "stylesheet" href = <?php echo base_url('css/bootstrap.css');?>>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+            <form class="d-flex" method="post" action="<?php echo base_url('index.php/Compte_interaction/Search'); ?>">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="plansearch">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+  </div>
+</nav>
+<main>
 <center><h1>Affichage du plan Comptable</h1></center>
     <table class="table table-success table-striped">
         <tr>
@@ -25,5 +35,6 @@
         </tr>
         <?php } ?>
     </table>
+</main>
 </body>
 </html>

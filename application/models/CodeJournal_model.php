@@ -13,7 +13,22 @@ class CodeJournal_model extends CI_Model {
         $this->db->query($query);
     }
 
+        /**
+     * @return array of the CodeJournal
+     */
+    public function findById($id){
+        $query = ("select * from codejournal where idcodejournal=%s");
+        $query=sprintf($query,$id);
+        $query = $this->db->query($query);
+        $code = array();
 
+        foreach($query->result_array() as $row){
+            $code[] = $row;
+        }
+
+        return $code[0];
+    }
+    
     /**
      * @return array of all CodeJournal
      */
@@ -36,7 +51,7 @@ class CodeJournal_model extends CI_Model {
      * 
      */
     public function update($id,$code,$intitule){
-        $query = ("UPDATE from codejournal set code='%s',intitule='%s' where idcodejournal=%s");
+        $query = ("UPDATE codejournal set code='%s',intitule='%s' where idcodejournal=%s");
         $query = sprintf($query,$code,$intitule,$id);
         $this->db->query($query);
     }
@@ -55,8 +70,9 @@ class CodeJournal_model extends CI_Model {
      * @return array of all the result of the search
      */
     public function search($code){
-        $query = ("SELECT * from codejournal where code like '".$code."%'");
-        $query = sprintf($query, $code);
+        $code= strtolower($code);
+        $query = ("SELECT * from plancomptable where code like '".$code."%' or intitule like '".$code."%'");
+        $query = sprintf($query, $code,$code);
         $result=$this->db->query($query);
         $codejournal=array();
         foreach($result->result_array() as $row){

@@ -18,8 +18,6 @@ class Insert_codeJournal extends CI_Controller {
         $code=$this->input->post('code');
         $intitule=$this->input->post('intitule');
         $this->CodeJournal->insert($code,$intitule);
-
-        // $this->load->view('Insert_CodeJournal');
         redirect(base_url('index.php/Insert_codeJournal/index'));
 
 
