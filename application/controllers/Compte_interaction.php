@@ -20,4 +20,10 @@ class Compte_interaction extends CI_Controller {
         redirect('index.php/Compte_interaction');
 
     }
+    public function Search(){
+        $code= $this->input->post('plansearch');
+        $plan= $this->Comptable_model->search($code);
+        $data = array('table' => $plan);
+        $this-> load->view('Comptable_searchResult',$data);
+    }
 }
