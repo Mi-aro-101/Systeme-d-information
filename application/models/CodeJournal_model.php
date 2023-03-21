@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class CodeJournal_model extends CI_Model {
     /**
      * @param string $code reference of the libelle
-     * @param string $libelle is the name of the code 
+     * @param string $libelle is the name of the code
      */
     public function insert($code, $libelle){
         $query = "INSERT INTO codejournal VALUES(default,%s, '%s', '%s')";
@@ -28,7 +28,7 @@ class CodeJournal_model extends CI_Model {
 
         return $code[0];
     }
-    
+
     /**
      * @return array of all CodeJournal
      */
@@ -43,12 +43,12 @@ class CodeJournal_model extends CI_Model {
 
         return $code;
     }
-    
+
          /**
      * @param string $id of the code_journal to update
      * @param string $code of the code_journal to update
      * @param string $intitule of the code_journal to update
-     * 
+     *
      */
     public function update($id,$code,$intitule){
         $query = ("UPDATE codejournal set code='%s',intitule='%s' where idcodejournal=%s");
@@ -63,22 +63,32 @@ class CodeJournal_model extends CI_Model {
         $query = ("DELETE from codejournal where idcodejournal=%s");
         $query = sprintf($query, $id);
         $this->db->query($query);
-    } 
+    }
 
     /**
-     * @param string $code to search 
+     * @param string $code to search
      * @return array of all the result of the search
      */
     public function search($code){
         $code= strtolower($code);
-        $query = ("SELECT * from plancomptable where code like '".$code."%' or intitule like '".$code."%'");
-        $query = sprintf($query, $code,$code);
+        $query = ("SELECT * from codejournal");
         $result=$this->db->query($query);
         $codejournal=array();
         foreach($result->result_array() as $row){
             $codejournal[]=$row;
         }
-        return $codejournal;
-    }   
+
+        $res = [];
+        $i = 0;
+
+        foreach($codejournal as $journal){
+            if(str_contains(strtolower($journal['code']), $code) || str_contains(strtolower($journal['intitule']), $code)){
+                $res[$i] = $journal;
+                $i+=1;
+            }
+        }
+
+        return $res;
+        }
 }
 ?>

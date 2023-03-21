@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Comptable_model extends CI_Model {
 
     // /**
-    //  * @param string $code to search 
+    //  * @param string $code to search
     //  * @return array of all the result of the search
     //  */
     // public function search($code){
@@ -16,7 +16,7 @@ class Comptable_model extends CI_Model {
     //         $codejournal[]=$row;
     //     }
     //     return $codejournal;
-    // }   
+    // }
 
     /**
      * @param $code is the 'compte' of the plancomptable
@@ -46,18 +46,49 @@ class Comptable_model extends CI_Model {
         $this->db->query($query);
     }
 
+    public function getbyId($id){
+        $query = ("select * from plancomptable where idplancomptable = '%s'");
+        $query = sprintf($query, $id);
+        $query = $this->db->query($query);
+        $comptable = array();
+
+        foreach($query->result_array() as $row){
+            $comptable[] = $row;
+        }
+
+        return $comptable[0];
+    }
+
+    public function modifier($idplancomptable, $code, $intitule){
+        $query = ("UPDATE plancomptable set code = '%s', intitule = '%s' where idplancomptable='%s'");
+        $query = sprintf($query, $code, $intitule, $idplancomptable);
+        echo $query;
+        $this->db->query($query);
+    }
+
     /**
-     * @param string $code to search 
+     * @param string $code to search
      * @return array of all the result of the search
      */
     public function search($code){
         $code= strtolower($code);
-        $query = ("SELECT * from plancomptable where code like '".$code."%' or intitule like '".$code."%'");
+        $query = ("SELECT * from plancomptable");
         $result=$this->db->query($query);
         $codejournal=array();
         foreach($result->result_array() as $row){
             $codejournal[]=$row;
         }
-        return $codejournal;
-    } 
+
+        $res = [];
+        $i = 0;
+
+        foreach($codejournal as $journal){
+            if(str_contains(strtolower($journal['code']), $code) || str_contains(strtolower($journal['intitule']), $code)){
+                $res[$i] = $journal;
+                $i+=1;
+            }
+        }
+
+        return $res;
+    }
 }

@@ -30,8 +30,8 @@
         <tr>
                 <td><?php echo $tab['code']; ?></td>
                 <td><?php echo $tab['intitule']; ?></td>
-                <td><a href=<?php echo base_url('index.php/Compte_interaction/Supprimer/'.$tab["code"].'');?>><button class="btn btn-danger">Supprimer</button></a></td>
-                <td><a href="<?php echo base_url('index.php/Compte_interaction/Modifier/'.$tab["code"].'');?>"><button class="btn btn-warning">Modifier</button></a></td>
+                <td><a href=<?php echo base_url('index.php/Compte_interaction/Supprimer/'.$tab["idplancomptable"].'');?>><button class="btn btn-danger">Supprimer</button></a></td>
+                <td><a href="<?php echo base_url('index.php/Compte_interaction/Modifier/'.$tab["idplancomptable"].'');?>"><button class="btn btn-warning">Modifier</button></a></td>
         </tr>
         <?php } ?>
     </table>
