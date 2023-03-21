@@ -51,7 +51,6 @@ FROM entite as e JOIN details as d
 create table plancomptable(
     idPlanComptable SERIAL PRIMARY KEY,
     identite INT,
-    idCodeJournal INT,
     Code VARCHAR(5),
     Intitule VARCHAR(50),
     FOREIGN KEY (identite) REFERENCES entite(idEntite)
@@ -121,9 +120,12 @@ CREATE TABLE journal(
     $$;
 
     --view maka balance
-    select tab.compta.code,
 
+    CREATE view getBalance as 
+    select compta.code code, sum(journal.debit) debit, sum(journal.credit) credit
     from journal
+    join plancomptable compta on journal.idCodeJournal=compta.idPlanComptable
+    group by compta.code;
 
 -- CREATE TABLE exercice(
 --     idExercice SERIAL,
