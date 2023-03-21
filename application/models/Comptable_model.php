@@ -59,6 +59,19 @@ class Comptable_model extends CI_Model {
         return $comptable[0];
     }
 
+    public function getbyEntity($entity){
+        $query = ("select * from plancomptable where identite = '%s'");
+        $query = sprintf($query, $entity);
+        $query = $this->db->query($query);
+        $comptable = array();
+
+        foreach($query->result_array() as $row){
+            $comptable[] = $row;
+        }
+
+        return $comptable;
+    }
+
     public function modifier($idplancomptable, $code, $intitule){
         $query = ("UPDATE plancomptable set code = '%s', intitule = '%s' where idplancomptable='%s'");
         $query = sprintf($query, $code, $intitule, $idplancomptable);
