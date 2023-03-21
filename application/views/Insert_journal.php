@@ -7,16 +7,29 @@
     <title>Insertion de journal</title>
 </head>
 <body>
+    <center><h1>Insertion de journal</h1></center>
     <table class="table">
-        <thead class="table-dark">
+        <thead class="table-light">
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
+                    <th>Journal</th>
+                    <th>Date</th>
+                    <th>Code journal</th>
+                    <th>N° de piece</th>
+                    <th>Compte tiers</th>
+                    <th>Libelle</th>
+                    <th>Devise</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
                 </tr>
-            </thead>
+        </thead>
             <tbody>
-                <tr id="rowToClone">
+                <tr>
+                    <td><input type="text" name="firstName"></td>
+                    <td><input type="text" name="lastName"></td>
+                    <td><input type="email" name="email"></td>
+                    <td><input type="text" name="firstName"></td>
+                    <td><input type="text" name="lastName"></td>
+                    <td><input type="email" name="email"></td>
                     <td><input type="text" name="firstName"></td>
                     <td><input type="text" name="lastName"></td>
                     <td><input type="email" name="email"></td>
@@ -24,7 +37,7 @@
             </tbody>
         </table>
 
-        <button onclick="cloneRow()">Clone Row</button>
+        <button class="btn btn-warning" onclick="cloneRow()">+</button>
 </body>
 </html>
 <link rel = "stylesheet" href = <?php echo base_url('css/bootstrap.css');?>>

@@ -1,7 +1,7 @@
 function cloneRow() {
     // get a reference to the table and the row you want to clone
-    var table = document.getElementById("myTable");
-    var rowToClone = document.getElementById("rowToClone");
+    var table = document.querySelector("table");
+    var rowToClone = document.querySelector("tbody");
 
     // clone the row
     var clonedRow = rowToClone.cloneNode(true);
