@@ -22,7 +22,7 @@ class Tiers_interaction extends CI_Controller {
     public function Modifier($id){
         $table = $this->Tiers_model->getbyId($id);
         $table = array('table' => $table);
-        $this->load->view('FormModif', $table);
+        $this->load->view('FormModifTiers', $table);
     }
 
     public function checkCode($code){

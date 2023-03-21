@@ -20,8 +20,8 @@
         <tr>
                 <td><?php echo $tab['code']; ?></td>
                 <td><?php echo $tab['intitule']; ?></td>
-                <td><a href=<?php echo base_url('index.php/CodeJournal_interaction/Supprimer/'.$tab["idcodejournal"].'');?>><button>Supprimer</button class="btn btn-danger"></a></td>
-                <td><a href="<?php echo base_url('index.php/CodeJournal_interaction/Modifier/'.$tab["idcodejournal"].'');?>"><button>Modifier</button class="btn btn-warning"></a></td>
+                <td><a href=<?php echo base_url('index.php/CodeJournal_interaction/Supprimer/'.$tab["idcodejournal"].'');?>><button class="btn btn-danger">Supprimer</button></a></td>
+                <td><a href="<?php echo base_url('index.php/CodeJournal_interaction/Modifier/'.$tab["idcodejournal"].'');?>"><button class="btn btn-warning">Modifier</button></a></td>
         </tr>
         <?php } ?>
     </table>
