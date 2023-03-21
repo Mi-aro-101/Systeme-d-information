@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
     
-    class GrandLivre_model extends CI_Model {
+    class Balance_model extends CI_Model {
          /**
             * 
             * @return array array of all the balance

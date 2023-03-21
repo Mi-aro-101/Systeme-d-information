@@ -122,10 +122,10 @@ CREATE TABLE journal(
     --view maka balance
 
     CREATE view getBalance as 
-    select compta.code code, sum(journal.debit) debit, sum(journal.credit) credit
+    select compta.code code,compta.Intitule intitule, sum(journal.debit) debit, sum(journal.credit) credit
     from journal
     join plancomptable compta on journal.idCodeJournal=compta.idPlanComptable
-    group by compta.code;
+    group by compta.code,compta.intitule;
 
 -- CREATE TABLE exercice(
 --     idExercice SERIAL,

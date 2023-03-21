@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Insert_codeJournal extends CI_Controller {
     public function __construct(){
         parent::__construct();
-        $this->load->model('CodeJournal_model','CodeJournal');
+        $this->load->model('Codejournal_model','CodeJournal');
     }
     
     public function index(){

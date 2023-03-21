@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     class GrandLivre_interaction extends CI_Controller {
         public function __construct(){
             parent::__construct();
-            $this->load->model('GrandLivre_model','Grandlivre');
+            $this->load->model('Grandlivre_model','Grandlivre');
         }
 
         public function index(){
