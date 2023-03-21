@@ -45,6 +45,19 @@ class Tiers_model extends CI_Model {
         return $tiers[0];
     }
 
+    public function getbyEntity($entity){
+        $query = ("select * from plantiers where identite = '%s'");
+        $query = sprintf($query, $entity);
+        $query = $this->db->query($query);
+        $comptable = array();
+
+        foreach($query->result_array() as $row){
+            $comptable[] = $row;
+        }
+
+        return $comptable;
+    }
+
     public function modifier($idplantiers, $code, $intitule){
         $query = ("UPDATE plantiers set numerocompte = '%s', intitule = '%s' where idplantiers='%s'");
         $query = sprintf($query, $code, $intitule, $idplantiers);
