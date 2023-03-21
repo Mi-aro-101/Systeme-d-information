@@ -38,12 +38,13 @@ create table Devise(
     idDevise SERIAL PRIMARY KEY,
     Nom VARCHAR(20)
 );
+
 create table equivalence(
     idEquivalence SERIAL PRIMARY KEY,
     idDevise int,
     taux DOUBLE PRECISION,
     Dateequivalence DATE
-)
+);
     --VIEW
 CREATE VIEW ListeDetails as SELECT e.idEntite,e.nomEntite,d.nomFondateur,d.numeroFiscale,d.siege,d.dateDeCreation,d.objet,d.numeroStatistique,d.numeroRegistre,d.deviseTenueDeCompte,d.deviseEquivalence    
 FROM entite as e JOIN details as d 
@@ -53,6 +54,7 @@ FROM entite as e JOIN details as d
 create table plancomptable(
     idPlanComptable SERIAL PRIMARY KEY,
     identite INT,
+    idCodeJournal INT,
     Code VARCHAR(5),
     Intitule VARCHAR(50),
     FOREIGN KEY (identite) REFERENCES entite(idEntite)
@@ -74,10 +76,57 @@ CREATE TABLE codeJournal (
     Intitule VARCHAR(100),
     FOREIGN KEY (identite) REFERENCES entite(idEntite)    
 );
--- CREATE TABLE journalAchat(
---     idJournal SERIAL PRIMARY KEY,
---     deviseEquivalence VARCHAR(20)
--- );
+
+CREATE TABLE journal(
+    idJournal SERIAL PRIMARY KEY,
+    identite INT,
+    DateEntree DATE,
+    idCodeJournal INT,
+    NumPiece VARCHAR(20),
+    idPlanComptable INT,
+    idPlanTiers INT default NULL,
+    libelle VARCHAR(30),
+    idDevise INT,
+    debit DOUBLE PRECISION,
+    credit DOUBLE PRECISION,
+    FOREIGN KEY (identite) REFERENCES entite(idEntite),
+    FOREIGN KEY (idCodeJournal) REFERENCES codeJournal(idCodeJournal),
+    FOREIGN KEY (idPlanComptable) REFERENCES plancomptable(idPlanComptable),
+    FOREIGN KEY (idPlanTiers) REFERENCES plantiers(idPlanTiers),
+    FOREIGN KEY (idDevise) REFERENCES devise(idDevise)
+);
+
+    --function return grand livre of one plan comptable
+    create function getGrandLivre(codeCompta VARCHAR(5))
+    returns table(idJournal int,identite INT,DateEntree DATE,idCodeJournal INT,code VARCHAR(5),NumPiece VARCHAR(20),idPlanComptable INT,idPlanTiers INT,libelle VARCHAR(30),idDevise INT,debit DOUBLE PRECISION,credit DOUBLE PRECISION)
+    language plpgsql
+    as 
+    $$
+    begin
+        return query select 
+            tab.idJournal idjournal,
+            tab.identite identite,
+            tab.dateentree dateentree,
+            tab.idcodeJournal idcodeJournal,
+            compt.Code codeCompta,
+            tab.numpiece numpiece,
+            tab.idPlanComptable idPlanComptable,
+            tab.idPlanTiers idPlantiers,
+            tab.libelle libelle,
+            tab.idDevise idDevise,
+            tab.debit Debit,
+            tab.credit Credit
+        
+        from journal as tab
+        join plancomptable  compt on compt.idPlanComptable=tab.idPlanComptable
+        where compt.code=codeCompta;
+    end;
+    $$;
+
+    --view maka balance
+    select tab.compta.code, 
+
+    from journal
 
 -- CREATE TABLE exercice(
 --     idExercice SERIAL,
