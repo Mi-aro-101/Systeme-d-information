@@ -10,23 +10,24 @@
 <body>
 
 <main>
-<center><h1>Affichage du Grand livre <?php echo $table[0]['codeCompta']; ?> </h1></center>
+<center><h1>Affichage de la balance</h1></center>
     <table class="table table-success table-striped">
         <tr>
-            <th>Date</th>
-            <th>N de piece</th>
-            <th>Libelle</th>
+            <th>Numero de Compte</th>
+            <th>Intitule</th>
             <th>Debit</th>
             <th>Credit</th>
+            <th>Solde</th>
 
         </tr>
         <?php foreach($table as $tab) { ?>
         <tr>
-                <td><?php echo $tab['dateentre']; ?></td>
-                <td><?php echo $tab['numpiece']; ?></td>
-                <td><?php echo $tab['libelle']; ?></td>
+                <td><?php echo $tab['code']; ?></td>
+                <td><?php echo $tab['intitule']; ?></td>
                 <td><?php echo $tab['debit']; ?></td>
                 <td><?php echo $tab['credit']; ?></td>
+                <td><?php echo $tab['debit']-$tab['credit']; ?></td>
+
         </tr>
         <?php } ?>
     </table>

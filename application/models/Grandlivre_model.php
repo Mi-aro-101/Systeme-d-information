@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
     
-    class GrandLivre_model extends CI_Model {
+    class Grandlivre_model extends CI_Model {
             /**
          * @param string $code is the 'compte' of the plancomptable
          * @return array array of  the grand livre of the specified code
