@@ -1,9 +1,6 @@
 CREATE DATABASE si;
 
-\c si;
-
---Mamorona table DEVISE hono :
-    -- Date
+\c si liantsiky;
 
 --Mamisoa
 CREATE TABLE entite(
@@ -46,8 +43,8 @@ create table equivalence(
     Dateequivalence DATE
 );
     --VIEW
-CREATE VIEW ListeDetails as SELECT e.idEntite,e.nomEntite,d.nomFondateur,d.numeroFiscale,d.siege,d.dateDeCreation,d.objet,d.numeroStatistique,d.numeroRegistre,d.deviseTenueDeCompte,d.deviseEquivalence    
-FROM entite as e JOIN details as d 
+CREATE VIEW ListeDetails as SELECT e.idEntite,e.nomEntite,d.nomFondateur,d.numeroFiscale,d.siege,d.dateDeCreation,d.objet,d.numeroStatistique,d.numeroRegistre,d.deviseTenueDeCompte,d.deviseEquivalence
+FROM entite as e JOIN details as d
     ON e.idEntite = d.idEntite;
 
 --Miaro
@@ -73,7 +70,7 @@ CREATE TABLE codeJournal (
     identite INT,
     Code VARCHAR(5),
     Intitule VARCHAR(100),
-    FOREIGN KEY (identite) REFERENCES entite(idEntite)    
+    FOREIGN KEY (identite) REFERENCES entite(idEntite)
 );
 
 CREATE TABLE journal(
@@ -99,10 +96,10 @@ CREATE TABLE journal(
     create function getGrandLivre(codeCompta VARCHAR(5))
     returns table(idJournal int,identite INT,DateEntree DATE,idCodeJournal INT,code VARCHAR(5),NumPiece VARCHAR(20),idPlanComptable INT,idPlanTiers INT,libelle VARCHAR(30),idDevise INT,debit DOUBLE PRECISION,credit DOUBLE PRECISION)
     language plpgsql
-    as 
+    as
     $$
     begin
-        return query select 
+        return query select
             tab.idJournal idjournal,
             tab.identite identite,
             tab.dateentree dateentree,
@@ -115,7 +112,7 @@ CREATE TABLE journal(
             tab.idDevise idDevise,
             tab.debit Debit,
             tab.credit Credit
-        
+
         from journal as tab
         join plancomptable  compt on compt.idPlanComptable=tab.idPlanComptable
         where compt.code=codeCompta;
@@ -123,6 +120,7 @@ CREATE TABLE journal(
     $$;
 
     --view maka balance
+
     CREATE view getBalance as 
     select compta.code code, sum(journal.debit) debit, sum(journal.credit) credit
     from journal

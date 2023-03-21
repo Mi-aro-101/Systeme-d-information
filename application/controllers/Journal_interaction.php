@@ -11,4 +11,28 @@ class Journal_interaction extends CI_Controller {
 	{
 		$this->load->view('Insert_journal');
 	}
+
+    public function sum($tabo){
+        $valo = 0;
+        foreach($tabo as $tab){
+            $valo+=(double)$tab;
+        }
+
+        return $valo;
+    }
+
+    public function Equilibrer(){
+        $val = 0;
+        $lesDebits = $_POST["Debit"];
+        $lesCredits = $_POST["Credit"];
+
+        $sumcredit = $this->sum($lesCredits);
+        $sumdebit = $this->sum($lesDebits);
+
+        if(($sumcredit - $sumdebit) == 0){
+            $val = 1;
+        }
+
+        echo $val;
+    }
 }
