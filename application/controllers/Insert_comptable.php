@@ -34,7 +34,6 @@ class Insert_comptable extends CI_Controller {
         while(strlen($code) < 5){
             $code=$code.'0';
         }
-
         return $code;
     }
 
@@ -47,7 +46,7 @@ class Insert_comptable extends CI_Controller {
         try{
             $this->checkCode($code);
             $libelle = $_POST['libelle'];
-            echo $code;
+            // echo $code;
             $this->Comptable_model->insertComptable($code, $libelle);
         }catch(Exception $e){
             echo $e->getMessage();
