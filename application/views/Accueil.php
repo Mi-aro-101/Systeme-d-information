@@ -79,6 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p><a href = <?php echo base_url('index.php/CodeJournal_interaction');?>  class = "text-decoration-none">Afficher Code journal</a></p>
         <p><a href = <?php echo base_url('index.php/Tiers_interaction');?>  class = "text-decoration-none">Afficher Compte Tiers</a></p>
 		<p><a href = <?php echo base_url('index.php/DetailsEntite');?>  class = "text-decoration-none">Afficher details Entite</a></p>
+		<p><a href = <?php echo base_url('index.php/Balance_interaction');?>  class = "text-decoration-none">Afficher la balance</a></p>
 		<p><a href = <?php echo base_url('index.php/GrandLivre_interaction');?>  class = "text-decoration-none">Afficher les grands livres</a></p>
 	</div>
 </div>

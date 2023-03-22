@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CodeJournal_model extends CI_Model {
+class Codejournal_model extends CI_Model {
     
     /**
      * @param string $code reference of the libelle
