@@ -43,9 +43,9 @@
                                     <option value="<?php echo $tiers['idplantiers']; ?>"><?php echo $tiers['numerocompte']; ?></option>
                                 <?php } ?>
                             </select></td>
-                        <td><input type="text" name="Libelle[]"></td>
-                        <td><input type="text" name="Debit[]"></td>
-                        <td><input type="text" name="Credit[]"></td>
+                        <td><input type="text" name="Libelle[]" required></td>
+                        <td><input type="text" name="Debit[]" required></td>
+                        <td><input type="text" name="Credit[]"required></td>
                     </tr>
                 </tbody>
         </table>

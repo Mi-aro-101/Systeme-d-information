@@ -18,7 +18,7 @@
   </div>
 </nav>
 <main>
-    <div id="tab">
+    <div id="myDiv">
     <center><h1>Affichage du plan Comptable</h1></center>
         <table class="table table-success table-striped">
             <tr>
@@ -49,7 +49,7 @@
 
 			xhr.onreadystatechange = function() {
 				if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-					document.getElementById("tab").innerHTML = this.responseText;
+					document.getElementById("myDiv").innerHTML = this.responseText;
 				}
 			};
 
