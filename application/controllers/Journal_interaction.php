@@ -18,6 +18,7 @@ class Journal_interaction extends CI_Controller {
         $CodeJournal = $this->Codejournal_model->findAll();
         $Devise = $this->Devise_model->findAll();
         $Total = array('Devise' => $Devise, 'CodeJournal' => $CodeJournal);
+        $this->load->view('Template');
 		$this->load->view('FormJournal', $Total);
 	}
 
