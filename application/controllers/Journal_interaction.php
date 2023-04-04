@@ -26,13 +26,13 @@ class Journal_interaction extends CI_Controller {
         try {
             $this->Exercice_model->checkDate($date);
             $codejournal = $this->Codejournal_model->findById($_GET['codejournal']);
-            $devise = $_GET['devise'];
+            // $devise = $_GET['devise'];
             $piece = $_GET['piece'];
             $plancomptable = $this->Comptable_model->getbyEntity($_SESSION['identity']);
             $plantiers = $this->Tiers_model->getbyEntity($_SESSION['identity']);
             $Total = array('date' => $date,
                          'codejournal' => $codejournal,
-                          'devise' => $devise,
+                        //   'devise' => $devise,
                           'piece' => $piece,
                           'plancomptable' => $plancomptable,
                           'plantiers' => $plantiers
@@ -75,7 +75,6 @@ class Journal_interaction extends CI_Controller {
         $date = $_POST['date'];
         $codejournal = $_POST['codejournal'];
         $piece = $_POST['piece'];
-        $devise = $_POST['devise'];
         $Comptable = $_POST['Comptable'];
         $Tiers = $_POST['Tiers'];
         $Libelle = $_POST['Libelle'];
@@ -86,7 +85,7 @@ class Journal_interaction extends CI_Controller {
             $this->Equilibrer($lesCredits, $lesDebits);
             for($i = 0 ; $i < $Comptable ; $i++){
                 $this->Journal_model->insert
-                ($date, $codejournal, $piece, $Comptable[$i], $Tiers[$i], $Libelle[$i], $devise, $lesDebits[$i], $lesCredits[$i]);
+                ($date, $codejournal, $piece, $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
             }
         } catch (Exception $e) {
             echo $e->getMessage();

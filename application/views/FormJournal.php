@@ -36,16 +36,6 @@
                     </div>
 
                 </div>
-                <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Devise</label>
-                    <div class="col-sm-10">
-                        <select name="devise" class="form-select">
-                            <?php foreach($Devise as $devise){?>
-                                <option value="<?php echo $devise['nom']; ?>"><?php echo $devise['nom']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
                 <center><div class="mb-3">
                     <button class="btn btn-primary" type="submit">Submit form</button>
                 </div></center>

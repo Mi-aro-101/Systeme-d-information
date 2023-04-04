@@ -16,7 +16,6 @@
                     <th>Date</th>
                     <th>Code journal</th>
                     <th>N° de piece</th>
-                    <th>Devise</th>
                     <th>Plan comptable</th>
                     <th>Compte tiers</th>
                     <th>Libelle</th>
@@ -29,7 +28,6 @@
                         <td><?php echo $date; ?><input type="hidden" name="date" value="<?php echo $date; ?>"></td>
                         <td><?php echo $codejournal['code']; ?><input name="codejournal" type="hidden" value="<?php echo $codejournal['idcodejournal']; ?>"></td>
                         <td><?php echo $piece; ?><input type="hidden" name="piece" value="<?php echo $piece; ?>"></td>
-                        <td><?php echo $devise; ?><input type="hidden" name="devise" value="<?php echo $devise; ?>"></td>
                         <td>
                             <select name="Comptable[]" id="">
                                 <?php foreach($plancomptable as $compte) {?>
