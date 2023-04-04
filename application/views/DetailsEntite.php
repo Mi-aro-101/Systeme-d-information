@@ -1,17 +1,8 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset = "UTF-8">
-    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = <?php echo base_url('css/bootstrap.css');?>>
-    <title>Details</title>
-</head>
-<body> -->
-    <center><h2 class="text-capitalize" >Details Entite</h2></center>
+
     <br>
     <form  method="post" action=<?php echo base_url("index.php/DetailsEntite/pageModif");?> >
         <div class="row">
+            <center><h2 class="text-capitalize" >Details Entite</h2></center>
             <div class="col-3"></div>
             <div class="col-6">
                 <div class="vstack gap-3">

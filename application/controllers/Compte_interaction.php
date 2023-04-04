@@ -11,6 +11,7 @@ class Compte_interaction extends CI_Controller {
     public function index(){
         $plancomptable = $this->Comptable_model->findAll();
         $data = array('table'=> $plancomptable);
+        $this->load->view('Template');
         $this->load->view('Comptable', $data);
     }
 

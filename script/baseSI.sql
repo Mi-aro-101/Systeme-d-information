@@ -11,7 +11,7 @@ CREATE TABLE entite(
 
 CREATE TABLE details(
     idEntite INT,
-    nomFondateur VARCHAR(80),
+    nomFondateur VARCHAR(100),
     numeroFiscale VARCHAR(80),
     siege VARCHAR(80),
     dateDeCreation DATE,
