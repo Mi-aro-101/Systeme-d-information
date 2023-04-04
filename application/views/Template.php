@@ -4,9 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
   <link rel="shortcut icon" href=<?php echo base_url('./img/fav.png');?> type="image/x-icon">  
-  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
-  <link rel = "stylesheet" href = <?php echo base_url('css/bootstrap.css');?>>
   <link rel = "stylesheet" href = <?php echo base_url('bootstrap-icons/font/bootstrap-icons.css');?>>
+  <link rel = "stylesheet" href = <?php echo base_url('css/bootstrap.css');?>>
   <link rel="stylesheet" type="text/css" href=<?php echo base_url('css/style2.css'); ?>>  
   <title>Welcome To Our Site</title>
 </head>

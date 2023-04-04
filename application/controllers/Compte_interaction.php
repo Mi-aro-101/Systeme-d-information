@@ -54,6 +54,6 @@ class Compte_interaction extends CI_Controller {
         $code= $this->input->post('plansearch');
         $plan= $this->Comptable_model->search($code);
         $data = array('table' => $plan);
-        $this-> load->view('Comptable_searchResult',$data);
+        $this-> load->view('Comptable',$data);
     }
 }
