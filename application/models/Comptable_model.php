@@ -23,8 +23,10 @@ class Comptable_model extends CI_Model {
      * @param $libelle is the name of the 'compte'
      */
     public function insertComptable($code, $libelle){
+        // echo $code;
         $query = ("INSERT INTO plancomptable VALUES(default, %s , '%s', '%s')");
         $query = sprintf($query, $_SESSION['identity'],$code, $libelle);
+        echo $query;
         $this->db->query($query);
     }
 
@@ -96,7 +98,7 @@ class Comptable_model extends CI_Model {
         $i = 0;
 
         foreach($codejournal as $journal){
-            if(str_contains(strtolower($journal['code']), $code) || str_contains(strtolower($journal['intitule']), $code)){
+            if(str_contains(strtolower($journal['compte']), $code) || str_contains(strtolower($journal['intitule']), $code)){
                 $res[$i] = $journal;
                 $i+=1;
             }

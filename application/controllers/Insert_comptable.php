@@ -44,7 +44,7 @@ class Insert_comptable extends CI_Controller {
     public function Insert(){
         $code = $_POST['code'];
         try{
-            $this->checkCode($code);
+            $code = $this->checkCode($code);
             $libelle = $_POST['libelle'];
             // echo $code;
             $this->Comptable_model->insertComptable($code, $libelle);
@@ -58,7 +58,7 @@ class Insert_comptable extends CI_Controller {
      * Check the columnm from the csv
      */
     public function checkColumn($data){
-        if(strcasecmp($data[0], 'code') == 1 || strcasecmp($data[1], 'libelle') == 1){
+        if(strcasecmp($data[0], 'code') == 0 || strcasecmp($data[1], 'libelle') == 1){
             throw new Exception('Les noms de colonne ne correspondent pas');
         }
     }
@@ -70,32 +70,34 @@ class Insert_comptable extends CI_Controller {
         $handle = fopen($_FILES['file']['tmp_name'], 'r');
         $i = 0;
         $this->db->query('begin');
-        while(($data = fgetcsv($handle, 10000, ',')) !== false){
-            if($i == 0){
-                try{
-                    $this->checkColumn($data);
-                }catch(Exception $e){
-                    echo $e->getMessage();
-                    break;
+        try{
+            while(($data = fgetcsv($handle, 10000, ',')) !== false){
+                if($i == 0){
+                    try{
+                        $this->checkColumn($data);
+                    }catch(Exception $e){
+                        echo $e->getMessage();
+                        break;
+                    }
                 }
-            }
-            $i++;
+                $i++;
 
-            if($i == 1){
-                continue;
-            }
+                if($i == 1){
+                    continue;
+                }
 
-            try{
-                $this->checkCode($data[0]);
-                $this->Comptable_model->insertComptable($data[0], $data[1]);
-                $this->db->query('commit');
-            }catch(Exception $e){
-                echo $e->getMessage();
-            }
-            finally{
-                $this->db->query('end');
-            }
+                    $data[0] = $this->checkCode($data[0]);
+                    $data[0]=trim($data[0]," ");
+                    $this->Comptable_model->insertComptable($data[0], $data[1]);
+                    $this->db->query('commit');
+                }
+                redirect("index.php/Accueil");
+        }catch(Exception $e){
+            echo $e->getMessage();
+            $this->db->query('rollback');
         }
-        redirect("index.php/Accueil");
+        finally{
+            $this->db->query('end');
+        }
     }
 }

@@ -69,7 +69,12 @@
       </a>
       <!-- end link -->
 
-
+      <!-- link -->
+      <a href=<?php echo base_url('index.php/Journal_interaction');?> class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        Journal
+      </a>
+      <!-- end link -->
+      
       <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">Details</p>
 
       <!-- link -->
