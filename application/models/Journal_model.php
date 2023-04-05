@@ -8,10 +8,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          * @param string $libelle is the name of the code 
          */
         public function insert($dateEntree,$idCodeJournal,$numPiece,$idPlanComptable,$idPlantiers,$libelle,$debit,$credit){
-            $query = "INSERT INTO codejournal (identite, dateentree, idcodejournal, numpiece, idplancomptable, idplantiers, libelle, debit, credit) VALUES(default,%s, %s, '%s',%s,'%s',%s,%s,'%s',%s,%s)";
+            $query = "INSERT INTO journal (identite, dateentree, idcodejournal, numpiece, idplancomptable, idplantiers, libelle, debit, credit) VALUES(%s,'%s',%s,'%s',%s,%s,'%s',%s,%s)";
             $query = sprintf($query, $_SESSION['identity'],$dateEntree,$idCodeJournal,$numPiece,$idPlanComptable,$idPlantiers,$libelle,$debit,$credit);
 
-            // echo $query;
+            echo $query;
             $this->db->query($query);
         }
     }

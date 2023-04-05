@@ -8,8 +8,8 @@ class Tiers_model extends CI_Model {
      * @param $libelle is the name of the 'compte'
      */
     public function insertTiers($code, $libelle){
-        $query = ("INSERT INTO plantiers VALUES(default, '%s', '%s', '%s')");
-        $query = sprintf($query, $_SESSION['identity'],$code, $libelle);
+        $query = ("INSERT INTO plantiers (identite,numerocompte,intitule) VALUES(%s, '%s', '%s')");
+        $query = sprintf($query, $_SESSION['identity'],$code, str_replace("'", "''", $libelle));
         $this->db->query($query);
     }
 

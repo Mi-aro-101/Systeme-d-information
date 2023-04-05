@@ -1,0 +1,17 @@
+#image {
+    background-image: url('../img//hero-img.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#dropdownMenuButton {
+    background-color: #365ccd;
+}
+
+button {
+    background-color: #365ccd;
+}
+
+td {
+    padding-left: 50px;
+}

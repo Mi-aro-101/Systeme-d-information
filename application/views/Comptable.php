@@ -24,15 +24,15 @@
             <tr>
                 <th>Numero</th>
                 <th>Intitule du compte</th>
-                <th>Suprrimer</th>
-                <th>Modifier</th>
+                <th><center>Suprrimer</center></th>
+                <th><center>Modifier</center></th>
             </tr>
             <?php foreach($table as $tab){?>
             <tr>
                     <td><?php echo $tab['code']; ?></td>
                     <td><?php echo $tab['intitule']; ?></td>
-                    <td><a href=<?php echo base_url('index.php/Compte_interaction/Supprimer/'.$tab["idplancomptable"].'');?>><button class="btn btn-danger">Supprimer</button></a></td>
-                    <td><a href=<?php echo base_url('index.php/Compte_interaction/Modifier/'.$tab["idplancomptable"].'');?>><button class="btn btn-warning">Modifier</button></a></td>
+                    <td><center><a href=<?php echo base_url('index.php/Compte_interaction/Supprimer/'.$tab["idplancomptable"].'');?>><button class="btn btn-danger">X</button></a></center></td>
+                    <td><center><a href=<?php echo base_url('index.php/Compte_interaction/Modifier/'.$tab["idplancomptable"].'');?>><button class="btn btn-warning">Crayon</button></a></center></td>
                 </tr>
                 <?php } ?>
         </table>

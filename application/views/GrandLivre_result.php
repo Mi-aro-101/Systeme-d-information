@@ -10,7 +10,7 @@
 <body>
 
 <main>
-<center><h1>Affichage du Grand livre <?php echo $table[0]['codeCompta']; ?> </h1></center>
+<center><h1>Affichage du Grand livre  </h1></center>
     <table class="table table-success table-striped">
         <tr>
             <th>Date</th>
@@ -22,7 +22,7 @@
         </tr>
         <?php foreach($table as $tab) { ?>
         <tr>
-                <td><?php echo $tab['dateentre']; ?></td>
+                <td><?php echo $tab['dateentree']; ?></td>
                 <td><?php echo $tab['numpiece']; ?></td>
                 <td><?php echo $tab['libelle']; ?></td>
                 <td><?php echo $tab['debit']; ?></td>

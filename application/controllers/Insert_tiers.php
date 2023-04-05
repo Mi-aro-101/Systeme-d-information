@@ -18,7 +18,7 @@ class Insert_tiers extends CI_Controller {
             throw new Exception("Votre code de compte depasse les 13 caracteres");
         }
         else {
-            return true;
+            return $code;
         }
     }
 
@@ -28,7 +28,7 @@ class Insert_tiers extends CI_Controller {
     public function insert(){
         $code = $_POST['code'];
         try{
-            $this->checkCode($code);
+            $code = $this->checkCode($code);
             $libelle = $_POST['libelle'];
             echo $code;
             $this->Tiers_model->insertTiers($code, $libelle);
@@ -71,7 +71,7 @@ class Insert_tiers extends CI_Controller {
             }
 
             try{
-                $this->checkCode($data[0]);
+                $data[0] = $this->checkCode($data[0]);
 
                 $this->Tiers_model->insertTiers($data[0], $data[1]);
                 $this->db->query('commit');
