@@ -63,6 +63,10 @@
                     <label for="exampleFormControlInput1" class="form-label">Mot de Passe</label>
                     <input type="password" class="form-control" id="exampleFormControlInput1" name="mdp" value = "a" required>
                 </div>
+                <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">NIF</label>
+                    <input type="file" class="form-control" id="inputGroupFile01" name="upload">
+                </div>
             </div>
         </div>
 

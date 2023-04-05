@@ -47,7 +47,7 @@ class FormEntite extends CI_Controller {
             $deviseTC = $this->input->post('tenueCompte');
             $deviseEq = $this->input->post('equivalence');
             $pwd = $this->input->post('mdp');
-            $this->Entite->insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd);
+            $this->Entite->insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd,$_FILES['file']['name']);
             redirect(site_url('index.php/Login'));
         }catch(Exception $e){
             echo 'Exception reçue : ',  $e->getMessage(), "\n";

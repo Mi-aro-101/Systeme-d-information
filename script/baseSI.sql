@@ -20,6 +20,7 @@ CREATE TABLE details(
     numeroRegistre VARCHAR(80),
     deviseTenueDeCompte VARCHAR(80),
     deviseEquivalence VARCHAR(20),
+    NIF VARCHAR(80),
     FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
 );
 
