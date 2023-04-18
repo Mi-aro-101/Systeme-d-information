@@ -22,6 +22,7 @@
 
     <!-- body -->
     <div class="card-body grid grid-cols-2 gap-6 lg:grid-cols-1">
+        <main>
         <form action="<?php echo base_url('index.php/Insert_codeJournal/Insert'); ?>" method="post">
             <div class="mb-3 row">
                 <label for="inputPassword" class="form-label">Code Journal</label>
@@ -38,7 +39,8 @@
             <center><div class="mb-3">
                 <button class="btn btn-primary" type="submit">Submit form</button>
             </div></center>
-        </form>        
+        </form>   
+        </main>     
     </div>
     <!-- end body -->
 

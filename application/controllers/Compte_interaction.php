@@ -17,7 +17,6 @@ class Compte_interaction extends CI_Controller {
 
     public function Supprimer($code){
         $this->Comptable_model->remove($code);
-
         redirect('index.php/Compte_interaction');
     }
 
