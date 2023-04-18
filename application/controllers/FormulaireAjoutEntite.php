@@ -5,6 +5,7 @@ class FormulaireAjoutEntite extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->view('Template');
 		$this->load->view('Formulaire');
 	}
 }

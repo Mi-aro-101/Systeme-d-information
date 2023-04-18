@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         public function index(){
+            $this->load->view('Template');
             $this->load-> view('GrandLivre');
         }
         public function afficher(){

@@ -1,26 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand Livre</title>
-    <link rel = "stylesheet" href = <?php echo base_url('css/bootstrap.css');?>>
-</head>
-<body>
+<!-- Sales Overview -->
+<div class="card mt-6">
 
-<main>
-<center><h1>Taper le code comptable que vous rechercher</h1></center>
-<div class="row">
-    <div class="col-3 offset"></div>
-    <div class="col-6">
-    <form class="d-flex" method="post" action="<?php echo base_url('index.php/GrandLivre_interaction/afficher'); ?>">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="plansearch">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+    <!-- header -->
+    <div class="card-header flex flex-row justify-between">
+        <h1 class="h6">    
+            <form class="d-flex" method="post" action="<?php echo base_url('index.php/GrandLivre_interaction/afficher'); ?>">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="plansearch">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+</h1>
+
+        <div class="flex flex-row justify-center items-center">
+
+            <a href="">
+                <i class="fad fa-chevron-double-down mr-6"></i>
+            </a>
+
+            <a href="">
+                <i class="fad fa-ellipsis-v"></i>
+            </a>
+
+        </div>
+
     </div>
-    <div class="col-3 offset"></div>
+    <!-- end header -->
+
+    <!-- body -->
+    <div class="card-body grid grid-cols-2 gap-6 lg:grid-cols-1">
+        
+    </div>
+    <!-- end body -->
+
 </div>
-</main>
 </body>
 </html>
