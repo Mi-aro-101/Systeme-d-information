@@ -92,6 +92,22 @@ CREATE TABLE journal(
     FOREIGN KEY (idDevise) REFERENCES devise(idDevise)
 );
 
+    CREATE VIEW v_get_20 as
+        SELECT SUM(j.debit) - SUM(j.credit) 
+            FROM journal WHERE idplancomptable LIKE '20%';
+    CREATE VIEW v_get_21 as
+        SELECT SUM(j.debit) - SUM(j.credit) 
+            FROM journal WHERE idplancomptable LIKE '21%';
+    CREATE VIEW v_get_22 as
+        SELECT SUM(j.debit) - SUM(j.credit) 
+            FROM journal WHERE idplancomptable LIKE '22%';
+    CREATE VIEW v_get_25 as
+        SELECT SUM(j.debit) - SUM(j.credit) 
+            FROM journal WHERE idplancomptable LIKE '25%';
+    CREATE VIEW v_get_13 as
+        SELECT SUM(j.debit) - SUM(j.credit) 
+            FROM journal WHERE idplancomptable LIKE '13%';
+            
     --function return grand livre of one plan comptable
     create function getGrandLivre(codeCompta VARCHAR(5))
     returns table(idJournal int,identite INT,DateEntree DATE,idCodeJournal INT,code VARCHAR(5),NumPiece VARCHAR(20),idPlanComptable INT,idPlanTiers INT,libelle VARCHAR(30),idDevise INT,debit DOUBLE PRECISION,credit DOUBLE PRECISION)
