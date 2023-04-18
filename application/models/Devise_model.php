@@ -7,7 +7,7 @@ class Devise_model extends CI_Model {
         $query = $this->db->query($query);
         $code = array();
 
-        foreach($query->result_array() as $row){
+        foreach($query->result_array() as $row) {
             $code[] = $row;
         }
 

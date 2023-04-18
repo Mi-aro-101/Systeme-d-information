@@ -17,7 +17,7 @@ class CodeJournal_interaction extends CI_Controller {
      * delete codeJounal function
      */
 
-    public function Supprimer($idcodeJournal){
+    public function Supprimer($idcodeJournal) {
         $this->CodeJournal->remove($idcodeJournal);
         redirect(base_url('index.php/CodeJournal_interaction/index'));
     }
