@@ -33,6 +33,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $query = $this->db->query($query);
             $compte = $query->row_array();
             return $compte;
+        }        
+        public function get13(){
+            $query = ("select * from v_get_13");
+            $query = $this->db->query($query);
+            $compte = $query->row_array();
+            return $compte;
         }
     }
 ?>
