@@ -40,5 +40,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $compte = $query->row_array();
             return $compte;
         }
+
+        public function getTotalNonCourant(){
+            return ((get20())+(get21())+(get22())+(get23())+(get25())(get13()));
+        }
     }
 ?>
