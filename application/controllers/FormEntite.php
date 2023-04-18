@@ -5,6 +5,7 @@ class FormEntite extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->load->view('Template');
         $this->load->model('Entite');
     }
 

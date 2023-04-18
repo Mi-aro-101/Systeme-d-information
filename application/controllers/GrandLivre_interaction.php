@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $code= $this->input->post('plansearch');
             $livre= $this->Grandlivre-> getOneGrangLivre($code);
             $table = array('table' => $livre);
+            $this->load->view('Template');
             $this-> load-> view('GrandLivre_result',$table);
         }
 

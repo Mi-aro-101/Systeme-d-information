@@ -11,6 +11,7 @@ class Tiers_interaction extends CI_Controller {
     public function index(){
         $plantiers = $this->Tiers_model->findAll();
         $data = array('table'=> $plantiers);
+        $this->load->view('Template');
         $this->load->view('Tiers', $data);
     }
 
@@ -22,6 +23,7 @@ class Tiers_interaction extends CI_Controller {
     public function Modifier($id){
         $table = $this->Tiers_model->getbyId($id);
         $table = array('table' => $table);
+        $this->load->view('Template');
         $this->load->view('FormModifTiers', $table);
     }
 
