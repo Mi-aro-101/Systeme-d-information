@@ -18,7 +18,6 @@ class Journal_interaction extends CI_Controller {
         $CodeJournal = $this->Codejournal_model->findAll();
         $Devise = $this->Devise_model->findAll();
         $Total = array('Devise' => $Devise, 'CodeJournal' => $CodeJournal);
-        $this->load->view('Template');
 		$this->load->view('FormJournal', $Total);
 	}
 
@@ -82,14 +81,20 @@ class Journal_interaction extends CI_Controller {
         $lesDebits = $_POST["Debit"];
         $lesCredits = $_POST["Credit"];
 
+
         try {
             $this->Equilibrer($lesCredits, $lesDebits);
-            for($i = 0 ; $i < $Comptable ; $i++){
-                $this->Journal_model->insert
-                ($date, $codejournal, $piece, $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
+            for($i = 0 ; $i < count($Comptable) ; $i++){
+                
+                if(empty($lesCredits[$i])){ $lesCredits[$i] = 'null';}
+                else if(empty($lesDebits[$i])){ $lesDebits[$i] = 'null';}
+                if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
+                $this->Journal_model->insert($date, $codejournal, $piece, $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
             }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+
+        redirect(base_url("index.php/journal_interaction/index"));
     }
 }

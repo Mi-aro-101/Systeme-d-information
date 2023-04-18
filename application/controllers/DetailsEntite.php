@@ -9,7 +9,6 @@ class DetailsEntite extends CI_Controller {
         $id = $this->session->userdata('identity');
         echo $id;
         $data['values'] = $this->Entite->findAll($id);
-        $this->load->view('Template');
         $this->load->view('DetailsEntite',$data);
     }
 

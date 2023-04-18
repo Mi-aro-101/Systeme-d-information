@@ -8,7 +8,6 @@ class Insert_codeJournal extends CI_Controller {
     }
     
     public function index(){
-        $this->load->view('Template');
         $this->load->view('Insert_CodeJournal');
     }
 

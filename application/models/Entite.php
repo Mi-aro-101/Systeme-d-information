@@ -45,7 +45,7 @@ class Entite extends CI_Model {
      * @param devise_Equivalente
      * @param password
      */
-    public function insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd,$nif)
+    public function insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd)
 	{
         try{
             $this->db->query("BEGIN");
@@ -53,8 +53,8 @@ class Entite extends CI_Model {
             $sql = sprintf($sql,$nomSociete,$pwd);
             $this->db->query($sql);
             $id = $this->getCurrval();
-            $sql = "INSERT INTO details VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
-            $sql = sprintf($sql,$id,$nomFondateur,$numFisc,$siege,$dateCreation,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$nif);
+            $sql = "INSERT INTO details VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+            $sql = sprintf($sql,$id,$nomFondateur,$numFisc,$siege,$dateCreation,$objet,$numStat,$numReg,$deviseTC,$deviseEq);
             $this->db->query($sql);
             $sql = "INSERT INTO exercice VALUES(default,%s,'%s','%s')";
             $sql = sprintf($sql,$id,$dateDebut,$this->getNextYearDate($dateDebut));

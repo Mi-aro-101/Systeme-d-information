@@ -10,7 +10,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function index(){
             $all= $this-> Balance-> getBalance();
             $table = array('table' => $all);
-            $this->load->view('Template');
             $this-> load-> view('Balance_result',$table);
         }
     }

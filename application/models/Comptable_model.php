@@ -25,13 +25,13 @@ class Comptable_model extends CI_Model {
     public function insertComptable($code, $libelle){
         // echo $code;
         $query = ("INSERT INTO plancomptable VALUES(default, %s , '%s', '%s')");
-        $query = sprintf($query, $_SESSION['identity'],$code, $libelle);
+        $query = sprintf($query, $_SESSION['identity'],$code, str_replace("'", "''", $libelle));
         echo $query;
         $this->db->query($query);
     }
 
     public function findAll(){
-        $query = ("select * from plancomptable");
+        $query = ("select * from plancomptable order by code");
         $query = $this->db->query($query);
         $compte = array();
 
@@ -43,7 +43,7 @@ class Comptable_model extends CI_Model {
     }
 
     public function remove($code){
-        $query = ("DELETE from plancomptable where code='%s'");
+        $query = ("DELETE from plancomptable where idplancomptable=%s");
         $query = sprintf($query, $code);
         $this->db->query($query);
     }
@@ -98,7 +98,7 @@ class Comptable_model extends CI_Model {
         $i = 0;
 
         foreach($codejournal as $journal){
-            if(str_contains(strtolower($journal['compte']), $code) || str_contains(strtolower($journal['intitule']), $code)){
+            if(substr($journal['code'],0,strlen($code))===$code || str_contains(strtolower($journal['intitule']), $code)){
                 $res[$i] = $journal;
                 $i+=1;
             }

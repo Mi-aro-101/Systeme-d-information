@@ -11,7 +11,6 @@ class Tiers_interaction extends CI_Controller {
     public function index(){
         $plantiers = $this->Tiers_model->findAll();
         $data = array('table'=> $plantiers);
-        $this->load->view('Template');
         $this->load->view('Tiers', $data);
     }
 

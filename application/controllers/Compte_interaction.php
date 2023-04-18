@@ -11,7 +11,6 @@ class Compte_interaction extends CI_Controller {
     public function index(){
         $plancomptable = $this->Comptable_model->findAll();
         $data = array('table'=> $plancomptable);
-        $this->load->view('Template');
         $this->load->view('Comptable', $data);
     }
 
@@ -27,13 +26,25 @@ class Compte_interaction extends CI_Controller {
         $this->load->view('FormModifCompte', $table);
     }
 
+    /**
+     * @param $code is the code(compte) to force à avoir 5 caractères pas plus pas moins
+     */
+    public function extendStrlen($code){
+        while(strlen($code) < 5){
+            $code=$code.'0';
+        }
+        return $code;
+    }
+
     public function checkCode($code){
-        if(strlen($code) > 5){
-            throw new Exception("Votre code de compte depasse les 13 caracteres");
+        if(strlen($code) < 5){
+            $code = $this->extendStrlen($code);
         }
-        else {
-            return true;
+        else if(strlen($code) > 5){
+            throw new Exception('La longueur de votre code doit etre <= 5');
         }
+
+        return $code;
     }
 
     public function validModification(){
@@ -41,7 +52,7 @@ class Compte_interaction extends CI_Controller {
         $intitule = $_GET['intitule'];
         $idplancomptable = $_GET['idplancomptable'];
         try{
-            $this->checkCode($code);
+            $code = $this->checkCode($code);
             $this->Comptable_model->modifier($idplancomptable, $code, $intitule);
             redirect('index.php/Compte_interaction');
         }catch(Exception $e){
