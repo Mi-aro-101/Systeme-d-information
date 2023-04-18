@@ -1,5 +1,4 @@
 <div class="card mt-6">
-
     <!-- header -->
     <div class="card-header flex flex-row justify-between">
         <form class="d-flex" method="post" id="search" action = <?php //echo base_url("index.php/Compte_interaction/Search"); ?>>
@@ -25,27 +24,28 @@
     <div class="card-body grid grid-cols-2 gap-6 lg:grid-cols-1">
     <div class="p-8">
     <main>
-    <div id="myDiv">
-    <center><h1>Affichage du plan Comptable</h1></center>
-        <table class="table">
-            <tr>
-                <th>Numero</th>
-                <th>Intitule du compte</th>
-                <th>Suprrimer</th>
-                <th>Modifier</th>
-            </tr>
-            <?php foreach($table as $tab){?>
-            <tr>
-                    <td><?php echo $tab['code']; ?></td>
-                    <td><?php echo $tab['intitule']; ?></td>
-                    <td><a href=<?php echo base_url('index.php/Compte_interaction/Supprimer/'.$tab["idplancomptable"].'');?>><button class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button></a></td>
-                    <td><a href=<?php echo base_url('index.php/Compte_interaction/Modifier/'.$tab["idplancomptable"].'');?>><button class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button></a></td>
+        
+        <div id="myDiv">
+        <center><h1>Affichage du plan Comptable</h1></center>
+            <table class="table">
+                <tr>
+                    <th>Numero</th>
+                    <th>Intitule du compte</th>
+                    <th>Suprrimer</th>
+                    <th>Modifier</th>
                 </tr>
-                <?php } ?>
-        </table>
-    <div>
-</main>
-            </div>
+                <?php foreach($table as $tab){?>
+                <tr>
+                        <td><?php echo $tab['code']; ?></td>
+                        <td><?php echo $tab['intitule']; ?></td>
+                        <td><a href=<?php echo base_url('index.php/Compte_interaction/Supprimer/'.$tab["idplancomptable"].'');?>><button class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button></a></td>
+                        <td><a href=<?php echo base_url('index.php/Compte_interaction/Modifier/'.$tab["idplancomptable"].'');?>><button class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button></a></td>
+                    </tr>
+                    <?php } ?>
+            </table>
+        <div>
+    </main>
+    </div>
 </div>
 <!-- end body -->
 
