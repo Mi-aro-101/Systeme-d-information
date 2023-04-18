@@ -11,7 +11,7 @@ CREATE TABLE entite(
 
 CREATE TABLE details(
     idEntite INT,
-    nomFondateur VARCHAR(100),
+    nomFondateur VARCHAR(80),
     numeroFiscale VARCHAR(80),
     siege VARCHAR(80),
     dateDeCreation DATE,
@@ -20,7 +20,6 @@ CREATE TABLE details(
     numeroRegistre VARCHAR(80),
     deviseTenueDeCompte VARCHAR(80),
     deviseEquivalence VARCHAR(20),
-    NIF VARCHAR(80),
     FOREIGN KEY(idEntite) REFERENCES entite(idEntite)
 );
 
@@ -121,11 +120,11 @@ CREATE TABLE journal(
     $$;
 
     --view maka balance
-
+select * from getBalance
     CREATE view getBalance as 
     select compta.code code,compta.Intitule intitule, sum(journal.debit) debit, sum(journal.credit) credit
     from journal
-    join plancomptable compta on journal.idCodeJournal=compta.idPlanComptable
+    join plancomptable compta on journal.idPlanComptable=compta.idPlanComptable
     group by compta.code,compta.intitule;
 
 -- CREATE TABLE exercice(
