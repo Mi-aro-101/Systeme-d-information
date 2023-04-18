@@ -29,7 +29,6 @@
             <thead class="table-light">
                 <tr>
                     <th>Date</th>
-                    <th>Code journal</th>
                     <th>N° de piece</th>
                     <th>Plan comptable</th>
                     <th>Compte tiers</th>
@@ -41,8 +40,7 @@
                 <tbody>
                     <tr>
                         <td><?php echo $date; ?><input type="hidden" name="date" value="<?php echo $date; ?>"></td>
-                        <td><?php echo $codejournal['code']; ?><input name="codejournal" type="hidden" value="<?php echo $codejournal['idcodejournal']; ?>"></td>
-                        <td><?php echo $piece; ?><input type="hidden" name="piece" value="<?php echo $piece; ?>"></td>
+                        <td><input type="text" name="piece[]" required></td>
                         <td>
                             <select name="Comptable[]" id="">
                                 <?php foreach($plancomptable as $compte) {?>
@@ -57,8 +55,8 @@
                                 <?php } ?>
                             </select></td>
                         <td><input type="text" name="Libelle[]" required></td>
-                        <td><input type="text" name="Debit[]" required></td>
-                        <td><input type="text" name="Credit[]"required></td>
+                        <td><input type="text" name="Debit[]"></td>
+                        <td><input type="text" name="Credit[]"></td>
                     </tr>
                 </tbody>
         </table>

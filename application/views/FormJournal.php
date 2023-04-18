@@ -31,23 +31,6 @@
                     <input type="date" name="date" class="form-control" id="inputPassword">
                     </div>
                 </div>
-                <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">N° Piece</label>
-                    <div class="col-sm-10">
-                    <input type="text" name="piece" class="form-control" id="inputPassword">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Code Journal</label>
-                    <div class="col-sm-10">
-                        <select name="codejournal" class="form-select">
-                            <?php foreach($CodeJournal as $journal){ ?>
-                                <option value="<?php echo $journal['idcodejournal']; ?>"><?php echo $journal['code']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-
-                </div>
                 <center><div class="mb-3">
                     <button class="btn btn-primary" type="submit">Submit form</button>
                 </div></center>
