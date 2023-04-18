@@ -26,15 +26,9 @@ class Journal_interaction extends CI_Controller {
         $date = $_GET['date'];
         try {
             $this->Exercice_model->checkDate($date);
-            $codejournal = $this->Codejournal_model->findById($_GET['codejournal']);
-            // $devise = $_GET['devise'];
-            $piece = $_GET['piece'];
             $plancomptable = $this->Comptable_model->getbyEntity($_SESSION['identity']);
             $plantiers = $this->Tiers_model->getbyEntity($_SESSION['identity']);
             $Total = array('date' => $date,
-                         'codejournal' => $codejournal,
-                        //   'devise' => $devise,
-                          'piece' => $piece,
                           'plancomptable' => $plancomptable,
                           'plantiers' => $plantiers
                         );
@@ -90,7 +84,8 @@ class Journal_interaction extends CI_Controller {
                 if(empty($lesCredits[$i])){ $lesCredits[$i] = 'null';}
                 else if(empty($lesDebits[$i])){ $lesDebits[$i] = 'null';}
                 if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
-                $this->Journal_model->insert($date, $codejournal, $piece, $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
+                if(empty($piece[$i])){ $piece[$i] = 'null'; }
+                $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
             }
         } catch (Exception $e) {
             echo $e->getMessage();

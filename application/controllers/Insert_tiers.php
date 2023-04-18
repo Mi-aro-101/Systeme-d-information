@@ -36,7 +36,7 @@ class Insert_tiers extends CI_Controller {
         }catch(Exception $e){
             echo $e->getMessage();
         }
-        redirect("index.php/Accueil");
+        return $this->index();
     }
 
     /**
