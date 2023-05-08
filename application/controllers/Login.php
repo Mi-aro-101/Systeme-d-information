@@ -17,4 +17,10 @@ class Login extends CI_Controller {
 		$this->session->set_userdata('identity',$value);
 		redirect('index.php/Accueil');
 	}
+
+	public function deconnexion(){
+		session_start();
+		session_destroy();
+		redirect('index.php/Login','refresh');
+	}
 }

@@ -2,7 +2,7 @@
 
 <!-- header -->
 <div class="card-header flex flex-row justify-between">
-    <h1 class="h6">Formulaire de Mise a Jour d'Entite</h1>
+    <h1 class="h6">Insertion de journal</h1>
 
 
     <div class="flex flex-row justify-center items-center">
@@ -25,11 +25,9 @@
 
     <div class="p-8">
     <form action="<?php echo base_url('index.php/Journal_interaction/Inserer'); ?>" method="get">
-                <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Date</label>
-                    <div class="col-sm-10">
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Date</label>
                     <input type="date" name="date" class="form-control" id="inputPassword">
-                    </div>
                 </div>
                 <center><div class="mb-3">
                     <button class="btn btn-primary" type="submit">Submit form</button>
