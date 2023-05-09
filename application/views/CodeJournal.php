@@ -14,7 +14,7 @@
     </div>
     <div class="card-body grid grid-cols-2 gap-6 lg:grid-cols-1">
         <div class="p-8">
-                <table class="table table-success table-striped">
+                <table class="table">
                     <tr>
                         <th>Code</th>
                         <th>Intitule du compte</th>

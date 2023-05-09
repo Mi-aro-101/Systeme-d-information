@@ -22,6 +22,10 @@
         CREATE OR REPLACE VIEW v_get_23 as
             SELECT *
                 FROM v_tableau j where codejournal LIKE '23%';
+        --25
+        CREATE OR REPLACE VIEW v_get_25 as
+            SELECT *
+                FROM v_tableau j where codejournal LIKE '25%';
         --13
         CREATE OR REPLACE VIEW v_get_13 as
             SELECT *
@@ -30,6 +34,10 @@
         CREATE OR REPLACE VIEW v_get_3 as
             SELECT *
                 FROM v_tableau j where codejournal LIKE '3%' AND codejournal not like '39%';
+        --41
+        CREATE OR REPLACE VIEW v_get_4 as
+            SELECT *
+                FROM v_tableau j where codejournal LIKE '4%' AND codejournal not like '41%';
         --41
         CREATE OR REPLACE VIEW v_get_41 as
             SELECT *
@@ -51,9 +59,9 @@
         CREATE OR REPLACE VIEW v_get_39 as
             SELECT *
                 FROM v_tableau j where codejournal LIKE '39%';
-        --49
-        CREATE OR REPLACE VIEW v_get_49 as
+        --491
+        CREATE OR REPLACE VIEW v_get_491 as
             SELECT *
-                FROM v_tableau j where codejournal LIKE '49%';
+                FROM v_tableau j where codejournal LIKE '491%';
 
                 
