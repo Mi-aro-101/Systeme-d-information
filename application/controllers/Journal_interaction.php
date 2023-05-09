@@ -89,12 +89,14 @@ class Journal_interaction extends CI_Controller {
         try {
             $this->Equilibrer($lesCredits, $lesDebits);
             for($i = 0 ; $i < count($Comptable) ; $i++){
-
-                if(empty($lesCredits[$i])){ $lesCredits[$i] = 0;}
-                else if(empty($lesDebits[$i])){ $lesDebits[$i] = 0;}
-                if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
-                if(empty($piece[$i])){ $piece[$i] = 'null'; }
-                $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
+                $plancomptable = $this->Comptable_model->getbyId($Comptable);
+                if(substr($plancomptable[''], 0, 1) == '6'){
+                    if(empty($lesCredits[$i])){ $lesCredits[$i] = 0;}
+                    else if(empty($lesDebits[$i])){ $lesDebits[$i] = 0;}
+                    if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
+                    if(empty($piece[$i])){ $piece[$i] = 'null'; }
+                    $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
+                }
             }
 
             redirect(base_url("index.php/journal_interaction/index"));
