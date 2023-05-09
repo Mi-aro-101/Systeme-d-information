@@ -16,7 +16,7 @@
                             <tr>
                               <th>Numero</th> 
                               <th>Intitule du compte</th>
-                              <th>Suprrimer</th>
+                              <th>Supprimer</th>
                               <th>Modifier</th>
                             </tr>
                           </thead>
