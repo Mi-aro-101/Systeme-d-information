@@ -43,7 +43,7 @@ create table equivalence(
     Dateequivalence DATE
 );
     --VIEW
-CREATE or replace VIEWListeDetails as SELECT e.idEntite,e.nomEntite,d.nomFondateur,d.numeroFiscale,d.siege,d.dateDeCreation,d.objet,d.numeroStatistique,d.numeroRegistre,d.deviseTenueDeCompte,d.deviseEquivalence
+CREATE or replace VIEW ListeDetails as SELECT e.idEntite,e.nomEntite,d.nomFondateur,d.numeroFiscale,d.siege,d.dateDeCreation,d.objet,d.numeroStatistique,d.numeroRegistre,d.deviseTenueDeCompte,d.deviseEquivalence
 FROM entite as e JOIN details as d
     ON e.idEntite = d.idEntite;
 
@@ -92,19 +92,19 @@ CREATE TABLE journal(
     FOREIGN KEY (idDevise) REFERENCES devise(idDevise)
 );
 
-    CREATE or replace VIEWv_get_20 as
+    CREATE or replace VIEW v_get_20 as
         SELECT SUM(j.debit) - SUM(j.credit)
-            FROM journal WHERE idplancomptable LIKE '20%';
-    CREATE or replace VIEWv_get_21 as
+            FROM journal j WHERE idplancomptable LIKE '20%';
+    CREATE or replace VIEW v_get_21 as
         SELECT SUM(j.debit) - SUM(j.credit)
-            FROM journal WHERE idplancomptable LIKE '21%';
-    CREATE or replace VIEWv_get_22 as
+            FROM journal j WHERE idplancomptable LIKE '21%';
+    CREATE or replace VIEW v_get_22 as
         SELECT SUM(j.debit) - SUM(j.credit)
-            FROM journal WHERE idplancomptable LIKE '22%';
-    CREATE or replace VIEWv_get_25 as
+            FROM journal j WHERE idplancomptable LIKE '22%';
+    CREATE or replace VIEW v_get_25 as
         SELECT SUM(j.debit) - SUM(j.credit)
-            FROM journal WHERE idplancomptable LIKE '25%';
-    CREATE or replace VIEWv_get_13 as
+            FROM journal  WHERE idplancomptable LIKE '25%';
+    CREATE or replace VIEW v_get_13 as
         SELECT SUM(j.debit) - SUM(j.credit)
             FROM journal WHERE idplancomptable LIKE '13%';
 
@@ -135,7 +135,7 @@ CREATE TABLE journal(
     end;
     $$;
 
-    --view maka balance
+    --view  maka balance
 select * from getBalance
     CREATE or replace view getBalance as
     select compta.code code,compta.Intitule intitule, sum(journal.debit) debit, sum(journal.credit) credit
