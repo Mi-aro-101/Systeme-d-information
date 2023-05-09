@@ -70,4 +70,4 @@ $template['public']['parser_method'] = 'parse';
 $template['public']['parse_template'] = TRUE;
 
 /* End of file template.php */
-/* Location: ./application/config/template.php */   
+/* Location: ./application/config/template.php */  
