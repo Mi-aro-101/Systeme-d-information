@@ -58,7 +58,7 @@ class Entite extends CI_Model {
             $this->db->query($sql);
             $sql = "INSERT INTO exercice VALUES(default,%s,'%s','%s')";
             $sql = sprintf($sql,$id,$dateDebut,$this->getNextYearDate($dateDebut));
-            echo $sql;
+            // echo $sql;
             $this->db->query($sql);
             $this->db->query("COMMIT");
         }
@@ -99,7 +99,7 @@ class Entite extends CI_Model {
     public function findAll($id){
         $sql = "SELECT * FROM ListeDetails WHERE identite = %s";
         $sql = sprintf($sql,$id);
-        echo $sql;
+        // echo $sql;
         $query = $this->db->query($sql);
         $value = $query->row_array();
         return $value;
