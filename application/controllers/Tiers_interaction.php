@@ -11,8 +11,8 @@ class Tiers_interaction extends CI_Controller {
     public function index(){
         $plantiers = $this->Tiers_model->findAll();
         $data = array('table'=> $plantiers);
-        $this->load->view('Template');
-        $this->load->view('Tiers', $data);
+        $this->template->write('title', 'Tiers', TRUE);
+        $this->template->write_view('content', 'Tiers', $data);
     }
 
     public function Supprimer($code){
@@ -23,8 +23,8 @@ class Tiers_interaction extends CI_Controller {
     public function Modifier($id){
         $table = $this->Tiers_model->getbyId($id);
         $table = array('table' => $table);
-        $this->load->view('Template');
-        $this->load->view('FormModifTiers', $table);
+        $this->template->write('title', 'Tiers', TRUE);
+        $this->template->write_view('content', 'FormModifTiers', $tale);
     }
 
     public function checkCode($code){

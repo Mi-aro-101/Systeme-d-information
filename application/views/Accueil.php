@@ -1,13 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<!DOCTYPE html>
-<html lang = "en">
-<head>
-	<meta charset = "utf-8">
-	<title>Welcome to CodeIgniter</title>
-	<link rel = "stylesheet" href = <?php echo site_url('css/bootstrap.css');?>>
-	<style type = "text/css">
+<style type = "text/css">
 
 	::selection { background-color: #E13300; color: white; }
 	::-moz-selection { background-color: #E13300; color: white; }
@@ -69,19 +63,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id = "container">
-	<h1>Accueil</h1>
-
-	<div id = "body">
-		<p><a href = <?php echo base_url('index.php/Insert_comptable');?>  class = "text-decoration-none">Inserer Plan Comptable</a></p>
-        <p><a href = <?php echo base_url('index.php/Insert_tiers');?>  class = "text-decoration-none">Inserer Compte Tiers</a></p>
-		<p><a href = <?php echo base_url('index.php/Insert_codeJournal');?>  class = "text-decoration-none">Inserer Code journal</a></p>
-        <p><a href = <?php echo base_url('index.php/Compte_interaction');?>  class = "text-decoration-none">Afficher Code Compte</a></p>
-		<p><a href = <?php echo base_url('index.php/CodeJournal_interaction');?>  class = "text-decoration-none">Afficher Code journal</a></p>
-        <p><a href = <?php echo base_url('index.php/Tiers_interaction');?>  class = "text-decoration-none">Afficher Compte Tiers</a></p>
-		<p><a href = <?php echo base_url('index.php/DetailsEntite');?>  class = "text-decoration-none">Afficher details Entite</a></p>
-		<p><a href = <?php echo base_url('index.php/Balance_interaction');?>  class = "text-decoration-none">Afficher la balance</a></p>
-		<p><a href = <?php echo base_url('index.php/GrandLivre_interaction');?>  class = "text-decoration-none">Afficher les grands livres</a></p>
-	</div>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Accueil</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+						<div id = "body">
+							<p><a href = <?php echo base_url('index.php/Insert_comptable');?>  class = "text-decoration-none">Inserer Plan Comptable</a></p>
+							<p><a href = <?php echo base_url('index.php/Insert_tiers');?>  class = "text-decoration-none">Inserer Compte Tiers</a></p>
+							<p><a href = <?php echo base_url('index.php/Insert_codeJournal');?>  class = "text-decoration-none">Inserer Code journal</a></p>
+							<p><a href = <?php echo base_url('index.php/Compte_interaction');?>  class = "text-decoration-none">Afficher Code Compte</a></p>
+							<p><a href = <?php echo base_url('index.php/CodeJournal_interaction');?>  class = "text-decoration-none">Afficher Code journal</a></p>
+							<p><a href = <?php echo base_url('index.php/Tiers_interaction');?>  class = "text-decoration-none">Afficher Compte Tiers</a></p>
+							<p><a href = <?php echo base_url('index.php/DetailsEntite');?>  class = "text-decoration-none">Afficher details Entite</a></p>
+							<p><a href = <?php echo base_url('index.php/Balance_interaction');?>  class = "text-decoration-none">Afficher la balance</a></p>
+							<p><a href = <?php echo base_url('index.php/GrandLivre_interaction');?>  class = "text-decoration-none">Afficher les grands livres</a></p>
+						</div>
+					</div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
 </div>
 </body>
 </html>

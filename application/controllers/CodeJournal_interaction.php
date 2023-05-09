@@ -10,8 +10,9 @@ class CodeJournal_interaction extends CI_Controller {
     public function index(){
         $codeJournal=$this->CodeJournal->findAll();
         $data=array('table'=>$codeJournal);
-        $this->load->view('Template');
-        $this->load->view('CodeJournal',$data);
+        $this->template->write('title', 'Code Journal', TRUE);
+        $this->template->write_view('content', 'cODEjOURNAL', $data);
+        $this->template->render();    
     }
 
     /**
@@ -31,8 +32,9 @@ class CodeJournal_interaction extends CI_Controller {
     public function Modifier($idcodeJournal){
         $codeJournal=$this->CodeJournal->findById($idcodeJournal);
         $data=array('table'=>$codeJournal);
-        $this->load->view('Template');
-        $this->load->view('Update_CodeJournal',$data);
+        $this->template->write('title', 'Balance', TRUE);
+        $this->template->write_view('content', 'Update_COdeJournal', $data);
+        $this->template->render();    
     }
 
     /**

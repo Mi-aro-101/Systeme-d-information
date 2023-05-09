@@ -11,7 +11,8 @@ class Bilan_interaction extends CI_Controller {
         // $data=array();
         $data= $this-> Balance-> getBalance();
         // return $data;
-        $this->load->view('Template');
-        $this->load->view('Bilan_result',$data);
+        $this->template->write('title', 'Bilan', TRUE);
+        $this->template->write_view('content', 'Bilan_result', $data);
+        $this->template->render();    
     }
 }

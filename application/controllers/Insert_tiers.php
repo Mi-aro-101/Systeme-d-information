@@ -10,8 +10,8 @@ class Insert_tiers extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->view('Template');
-		$this->load->view('Insert_Tiers');
+        $this->template->write('title', 'Code Tiers', TRUE);
+        $this->template->write_view('content', 'Insert_Tiers', '' ,TRUE);
 	}
 
     public function checkCode($code){
