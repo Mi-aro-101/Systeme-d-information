@@ -26,7 +26,7 @@ class Comptable_model extends CI_Model {
         // echo $code;
         $query = ("INSERT INTO plancomptable VALUES(default, %s , '%s', '%s')");
         $query = sprintf($query, $_SESSION['identity'],$code, str_replace("'", "''", $libelle));
-        echo $query;
+        // echo $query;
         $this->db->query($query);
     }
 

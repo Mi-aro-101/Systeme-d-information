@@ -9,6 +9,9 @@ class Tiers_interaction extends CI_Controller {
     }
 
     public function index(){
+        if ($this->session->flashdata('success_message')) {
+            echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
+        }
         $plantiers = $this->Tiers_model->findAll();
         $data = array('table'=> $plantiers);
         $this->load->view('Template');
@@ -43,10 +46,12 @@ class Tiers_interaction extends CI_Controller {
         try{
             $this->checkCode($code);
             $this->Tiers_model->modifier($idplantiers, $code, $intitule);
+            $this->session->set_flashdata('success_message', 'Modifiee avec succes.');
             redirect('index.php/Tiers_interaction');
         }catch(Exception $e){
-            echo $e;
-            echo $e->getMessage();
+            $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+            $str1 = sprintf($str1, $e->getMessage());
+            echo $str1;
         }
     }
 }

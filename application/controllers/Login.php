@@ -5,6 +5,9 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->flashdata('success_message')) {
+            echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
+        }
 		$this->load->view('Login');
 	}
 
