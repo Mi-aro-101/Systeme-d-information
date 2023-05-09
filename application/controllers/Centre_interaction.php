@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         public function index(){
+            $this->load->view("Template");
             $this->load->view("Insert_Centre");
             if ($this->session->flashdata('success_message')) {
                 echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
