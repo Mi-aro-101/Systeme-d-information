@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             * @return array array of all the balance
         */
         public function getBalance(){
-            $query = ("select * from getBalance");
+            $query = ("select * from getBalance order by code asc");
             $query = $this->db->query($query);
             $compte = array();
 
