@@ -11,6 +11,8 @@ class Journal_interaction extends CI_Controller {
         $this->load->model('Tiers_model');
         $this->load->model('Exercice_model');
         $this->load->model('Journal_model');
+        $this->load->model('Produit_model');
+        $this->load->model('Centre_model');
     }
 
 	public function index()
@@ -28,9 +30,13 @@ class Journal_interaction extends CI_Controller {
             $this->Exercice_model->checkDate($date);
             $plancomptable = $this->Comptable_model->getbyEntity($_SESSION['identity']);
             $plantiers = $this->Tiers_model->getbyEntity($_SESSION['identity']);
+            $produits = $this->Produit_model->findAll();
+            $centres = $this->Centre_model->findAll();
             $Total = array('date' => $date,
                           'plancomptable' => $plancomptable,
-                          'plantiers' => $plantiers
+                          'plantiers' => $plantiers,
+                          'produits' => $produits,
+                          'centres' => $centres
                         );
 
             $this->load->view('Template');
