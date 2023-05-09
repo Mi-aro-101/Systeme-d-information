@@ -8,10 +8,17 @@ class Bilan_interaction extends CI_Controller {
     }
 
     public function index(){
-        // $data=array();
-        $data= $this-> Balance-> getBalance();
+        $data=array();
+        $actifBrut= $this-> Bilan ->getAllCodeActifBrut();
+        $actifNet= $this-> Bilan ->getAllCodeActifNet();
+        $passif= $this-> Bilan -> getAllCodePassif();
+
+        $data['actifBrut'] = $actifBrut;
+        $data['actifNet'] = $actifNet;
+        $data['passif'] = $passif;
         // return $data;
         $this->load->view('Template');
-        $this->load->view('Bilan_result',$data);
+        $this->load->view('Actif_result',$data);
+        $this->load->view('Passif_result',$data);
     }
 }
