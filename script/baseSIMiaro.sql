@@ -13,7 +13,8 @@ create table production(
 
 create table centre(
     idCentre SERIAL PRIMARY KEY,
-    nomCentre VARCHAR(30)
+    nomCentre VARCHAR(30),
+    nature VARCHAR(2) --Structure['S'] / Operationnel['O']
 );
 
 create table parametre(

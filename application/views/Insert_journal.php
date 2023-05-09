@@ -35,6 +35,12 @@
                     <th>Libelle</th>
                     <th>Debit</th>
                     <th>Credit</th>
+                    <th>Produits</th>
+                    <?php
+                        foreach($centres as $centre){ ?>
+                            <th><?php echo $centre['nomcentre'];?></th>
+                        <?php }
+                    ?>
                 </tr>
             </thead>
                 <tbody>
@@ -57,6 +63,18 @@
                         <td><input type="text" name="Libelle[]" required></td>
                         <td><input type="text" name="Debit[]"></td>
                         <td><input type="text" name="Credit[]"></td>
+                        <td>
+                            <select name="Comptable[]" id="">
+                                <?php foreach($produits as $produit) {?>
+                                    <option value="<?php echo $produit['idproduit']; ?>"><?php echo $produit['nomproduit']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                        <?php
+                        foreach($centres as $centre){ ?>
+                            <td><input type="text" name="pourcentage" placeholder="% (en pourcentage)"></td>
+                        <?php }
+                    ?>
                     </tr>
                 </tbody>
         </table>
@@ -68,11 +86,11 @@
     </div>
 
         </div>
-    
+
         <div class="">
             <div id="sealsOverview"></div>
         </div>
-    
+
     </div>
     <!-- end body -->
 

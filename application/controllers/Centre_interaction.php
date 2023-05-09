@@ -17,10 +17,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function insererCentre(){
             $nomCentre = $_POST['nomCentre'];
-            if(!empty($nomCentre)){
-                $this->Centre_model->inserer($nomCentre);
+            $nature = $_POST['nature'];
+            if(!empty($nomCentre) && !empty($nature)){
+                $this->Centre_model->inserer($nomCentre, $nature);
                 $this->session->set_flashdata('success_message', 'Inseree avec succes.');
-                redirect(base_url("index.php/produit_interaction/index"));
+                redirect(base_url("index.php/centre_interaction/index"));
             }
             else{
                 $message = "Ne pas laisser le champ vide";

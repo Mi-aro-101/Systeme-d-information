@@ -31,8 +31,19 @@
                 <input type="text" name="nomCentre" class="form-control" id="inputPassword" required>
                 </div>
             </div>
+
+            <div class="mb-3 row">
+                <label for="inputPassword" class="form-label">Nature</label>
+                <div class="col-sm-10">
+                <select name="nature" class="form-select" aria-label="Default select example">
+                    <option value="S">Structure</option>
+                    <option value="O">Operationel</option>
+                </select>
+                </div>
+            </div>
+
             <div class="mb-3">
-                <button class="btn btn-primary" type="submit">Submit form</button>
+                <button class="btn btn-primary" type="submit">Soumettre</button>
             </div>
         </form>
     </div>
