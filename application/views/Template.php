@@ -34,7 +34,7 @@
 <!-- strat wrapper -->
 <div class="h-screen flex flex-row flex-wrap">
 
-    <!-- start sidebar -->
+  <!-- start sidebar -->
   <div id="sideBar" class="relative flex flex-col flex-wrap bg-white border-r border-gray-300 p-6 flex-none w-64 md:-ml-64 md:fixed md:top-0 md:z-30 md:h-screen md:shadow-xl animated faster">
 
 
@@ -72,6 +72,18 @@
       <!-- link -->
       <a href=<?php echo base_url('index.php/Journal_interaction');?> class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         Journal
+      </a>
+      <!-- end link -->
+
+      <!-- link -->
+      <a href=<?php echo base_url('index.php/Centre_interaction');?>  class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+       Centre
+      </a>
+      <!-- end link -->
+
+      <!-- link -->
+      <a href=<?php echo base_url('index.php/Produit_interaction');?>  class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+       Produit
       </a>
       <!-- end link -->
 
@@ -118,6 +130,8 @@
        Bilan
       </a>
       <!-- end link -->
+
+
       <!-- link -->
       <a href = <?php echo base_url('index.php/Login/deconnexion');?>  class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         Deconnexion

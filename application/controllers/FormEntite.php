@@ -24,9 +24,12 @@ class FormEntite extends CI_Controller {
             $deviseEq = $this->input->post('equivalence');
             $pwd = $this->input->post('mdp');
             $this->Entite->insertEntite($nomFondateur,$nomSociete,$numFisc,$siege,$dateCreation,$dateDebut,$objet,$numStat,$numReg,$deviseTC,$deviseEq,$pwd);
+            $this->session->set_flashdata('success_message', 'Inseree avec succes.');
             redirect(site_url('index.php/Login'));
         }catch(Exception $e){
-            echo 'Exception reçue : ',  $e->getMessage(), "\n";
+            $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+            $str1 = sprintf($str1, $e->getMessage());
+            echo $str1;
         }
 	}
 }

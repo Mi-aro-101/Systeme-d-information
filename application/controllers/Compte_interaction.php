@@ -9,6 +9,9 @@ class Compte_interaction extends CI_Controller {
     }
 
     public function index(){
+        if ($this->session->flashdata('success_message')) {
+            echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
+        }
         $plancomptable = $this->Comptable_model->findAll();
         $data = array('table'=> $plancomptable);
         $this->load->view('Template');
@@ -55,10 +58,12 @@ class Compte_interaction extends CI_Controller {
         try{
             $code = $this->checkCode($code);
             $this->Comptable_model->modifier($idplancomptable, $code, $intitule);
+            $this->session->set_flashdata('success_message', 'Modifiee avec succes.');
             redirect('index.php/Compte_interaction');
         }catch(Exception $e){
-            echo $e;
-            echo $e->getMessage();
+            $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+            $str1 = sprintf($str1, $e->getMessage());
+            echo $str1;
         }
     }
 

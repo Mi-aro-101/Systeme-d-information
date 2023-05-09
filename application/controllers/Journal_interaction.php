@@ -36,7 +36,9 @@ class Journal_interaction extends CI_Controller {
             $this->load->view('Template');
             $this->load->view('Insert_journal', $Total);
         } catch (Exception $e) {
-            echo $e->getMessage();
+            $str1 = '<script language="javascript">alert("%s");window.history.back();</script>';
+            $str1 = sprintf($str1, $e->getMessage());
+            echo $str1;
         }
     }
 
@@ -81,7 +83,7 @@ class Journal_interaction extends CI_Controller {
         try {
             $this->Equilibrer($lesCredits, $lesDebits);
             for($i = 0 ; $i < count($Comptable) ; $i++){
-                
+
                 if(empty($lesCredits[$i])){ $lesCredits[$i] = 0;}
                 else if(empty($lesDebits[$i])){ $lesDebits[$i] = 0;}
                 if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
@@ -92,10 +94,9 @@ class Journal_interaction extends CI_Controller {
             redirect(base_url("index.php/journal_interaction/index"));
 
         } catch (Exception $e) {
-            $str1 = '<script language="javascript">alert("%s")</script>';
+            $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
             $str1 = sprintf($str1, $e->getMessage());
             echo $str1;
-            // echo $e->getMessage();
         }
 
     }
