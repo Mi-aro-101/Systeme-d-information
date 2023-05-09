@@ -1,10 +1,30 @@
-<center><h2 class="text-capitalize" >Details Entite</h2></center>
-    <br>
-    <form  method="post" action=<?php echo base_url("index.php/DetailsEntite/pageModif");?> >
+<div class="card mt-6">
+<!-- header -->
+<div class="card-header flex flex-row justify-between">
+    <center><h2 class="text-capitalize" >Details Entite</h2></center>
+    <div class="flex flex-row justify-center items-center">
+
+        <a href="">
+            <i class="fad fa-chevron-double-down mr-6"></i>
+        </a>
+
+        <a href="">
+            <i class="fad fa-ellipsis-v"></i>
+        </a>
+
+    </div>
+
+</div>
+<!-- end header -->
+
+<!-- body -->
+<div class="card-body grid grid-cols-2 gap-6 lg:grid-cols-1">
+
+    <div class="p-8">    
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <div class="vstack gap-3">
+                <div class="vstack gap-3" style="color: black">
                     <div>
                         <p><label for="exampleFormControlInput1" class="form-label">Nom du Fondateur : </label> <?php echo $values['nomfondateur'];?> </p>
                     </div>
@@ -46,5 +66,7 @@
             </center>
         </div>
     </form>
+        </div>
+</div>
 <!-- </body>
 </html> -->

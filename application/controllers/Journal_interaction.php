@@ -33,6 +33,7 @@ class Journal_interaction extends CI_Controller {
                           'plantiers' => $plantiers
                         );
 
+            $this->load->view('Template');
             $this->load->view('Insert_journal', $Total);
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -68,7 +69,7 @@ class Journal_interaction extends CI_Controller {
 
     public function Verifier(){
         $date = $_POST['date'];
-        $codejournal = $_POST['codejournal'];
+        // $codejournal = $_POST['codejournal'];
         $piece = $_POST['piece'];
         $Comptable = $_POST['Comptable'];
         $Tiers = $_POST['Tiers'];
@@ -81,16 +82,22 @@ class Journal_interaction extends CI_Controller {
             $this->Equilibrer($lesCredits, $lesDebits);
             for($i = 0 ; $i < count($Comptable) ; $i++){
                 
-                if(empty($lesCredits[$i])){ $lesCredits[$i] = 'null';}
-                else if(empty($lesDebits[$i])){ $lesDebits[$i] = 'null';}
+                if(empty($lesCredits[$i])){ $lesCredits[$i] = 0;}
+                else if(empty($lesDebits[$i])){ $lesDebits[$i] = 0;}
                 if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
                 if(empty($piece[$i])){ $piece[$i] = 'null'; }
                 $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
             }
+
+            redirect(base_url("index.php/journal_interaction/index"));
+
         } catch (Exception $e) {
-            echo $e->getMessage();
+            $str1 = '<script language="javascript">alert("%s")</script>';
+            $str1 = sprintf($str1, $e->getMessage());
+            echo $str1;
+            // echo $e->getMessage();
         }
 
-        redirect(base_url("index.php/journal_interaction/index"));
     }
 }
+?>

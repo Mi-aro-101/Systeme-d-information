@@ -7,7 +7,7 @@ class DetailsEntite extends CI_Controller {
 	public function index(){
         $this->load->model('Entite');
         $id = $this->session->userdata('identity');
-        echo $id;
+        // echo $id;
         $data['values'] = $this->Entite->findAll($id);
         $this->load->view('Template');
         $this->load->view('DetailsEntite',$data);
@@ -16,7 +16,7 @@ class DetailsEntite extends CI_Controller {
     public function pageModif(){
         $this->load->model('Entite');
         $id = $this->session->userdata('identity');
-        echo $id;
+        // echo $id;
         $data['values'] = $this->Entite->findAll($id);
         $this->load->view('Template');
         $this->load->view('UpdateEntite',$data);
@@ -25,7 +25,7 @@ class DetailsEntite extends CI_Controller {
     public function update(){
         $this->load->model('Entite');
         $id = $this->session->userdata('identity');
-        echo $id;
+        // echo $id;
         $nomFondateur = $this->input->post('fondateur');
         $nomSociete = $this->input->post('nomSociete');
         $numFisc = $this->input->post('numeroFiscale');
