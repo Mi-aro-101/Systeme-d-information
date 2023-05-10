@@ -9,9 +9,14 @@ class Insert_comptable extends CI_Controller {
     }
 
 	public function index()
-	{      
-         $this->template->write('title', 'Code Comptable', TRUE);
-        $this->template->write_view('content', 'Insert_Comptable', '' ,TRUE);
+	{
+        // $this->load->view('Template');
+		// $this->load->view('Insert_Comptable');
+        $this->template->write('title','Code Comptable',TRUE);
+        $this->template->write_view('content','Insert_Comptable','',TRUE);
+        if ($this->session->flashdata('success_message')) {
+            echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
+        }
 	}
 
     /**
@@ -47,10 +52,13 @@ class Insert_comptable extends CI_Controller {
         try{
             $code = $this->checkCode($code);
             $libelle = $_POST['libelle'];
-            // echo $code;
             $this->Comptable_model->insertComptable($code, $libelle);
+            $this->session->set_flashdata('success_message', 'Inseree avec succes.');
+            redirect(base_url("index.php/insert_comptable/index"));
         }catch(Exception $e){
-            echo $e->getMessage();
+            $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+            $str1 = sprintf($str1, $e->getMessage());
+            echo $str1;
         }
         redirect("index.php/Accueil");
     }
@@ -77,7 +85,9 @@ class Insert_comptable extends CI_Controller {
                     try{
                         $this->checkColumn($data);
                     }catch(Exception $e){
-                        echo $e->getMessage();
+                        $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+                        $str1 = sprintf($str1, $e->getMessage());
+                        echo $str1;
                         break;
                     }
                 }
@@ -92,9 +102,12 @@ class Insert_comptable extends CI_Controller {
                     $this->Comptable_model->insertComptable($data[0], $data[1]);
                     $this->db->query('commit');
                 }
-                redirect("index.php/Accueil");
+                $this->session->set_flashdata('success_message', 'Inseree avec succes.');
+                redirect(base_url("index.php/insert_comptable/index"));
         }catch(Exception $e){
-            echo $e->getMessage();
+            $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+            $str1 = sprintf($str1, $e->getMessage());
+            echo $str1;
             $this->db->query('rollback');
         }
         finally{
