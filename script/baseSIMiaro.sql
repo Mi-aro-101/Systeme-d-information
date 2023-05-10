@@ -19,8 +19,14 @@ create table centre(
 
 create table parametre(
     idParametre SERIAL PRIMARY KEY,
+    idJournal INT REFERENCES journal(idJournal),
     idCentre INT REFERENCES centre(idCentre),
-    idCompta INT REFERENCES plancomptable(idplancomptable),
+    idProduit INT REFERENCES produit(idProduit),
     pourcentage DOUBLE PRECISION,
     Statut VARCHAR(2) --Fixe['F'] / Variable['V']
 );
+
+create or replace view v_charges as
+select p.idparametre idparametre, j.idjournal idjournal, p.idCentre idCentre, p.idProduit idProduit, j.libelle rubrique, j.debit total, p.pourcentage pourcentage, p.Statut nature
+    from journal j 
+    join parametre p on j.idJournal=p.idJournal

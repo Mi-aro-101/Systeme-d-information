@@ -13,6 +13,7 @@ class Journal_interaction extends CI_Controller {
         $this->load->model('Journal_model');
         $this->load->model('Produit_model');
         $this->load->model('Centre_model');
+        $this->load->model('Parametre_model');
     }
 
 	public function index()
@@ -84,17 +85,29 @@ class Journal_interaction extends CI_Controller {
         $Libelle = $_POST['Libelle'];
         $lesDebits = $_POST["Debit"];
         $lesCredits = $_POST["Credit"];
-
-
+        
+        $idCentre = $_POST['idcentre'];
+        $idProduit = $_POST['idproduit'];
+        $pourcentage = $_POST['pourcentage'];
+        $statut = $_POST['statut'];
+    
+        
         try {
             $this->Equilibrer($lesCredits, $lesDebits);
             for($i = 0 ; $i < count($Comptable) ; $i++){
-
+                $plancomptable = $this->Comptable_model->getbyId($Comptable);
+                
                 if(empty($lesCredits[$i])){ $lesCredits[$i] = 0;}
                 else if(empty($lesDebits[$i])){ $lesDebits[$i] = 0;}
                 if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
                 if(empty($piece[$i])){ $piece[$i] = 'null'; }
                 $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
+                if(substr($plancomptable[''], 0, 1) == '6'){
+                    for($j = 0 ; $j < count($_POST['idcentre']) ; $j++){
+                        $lesPourcentages = $_POST['pourcentage'.$j];
+                    }
+                    // $this->Parametre_model->inserer();
+                }
             }
 
             redirect(base_url("index.php/journal_interaction/index"));

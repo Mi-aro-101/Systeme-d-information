@@ -49,7 +49,7 @@ class Comptable_model extends CI_Model {
     }
 
     public function getbyId($id){
-        $query = ("select * from plancomptable where idplancomptable = '%s'");
+        $query = ("select * from plancomptable where idplancomptable = %s");
         $query = sprintf($query, $id);
         $query = $this->db->query($query);
         $comptable = array();

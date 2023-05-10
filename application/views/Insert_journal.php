@@ -70,10 +70,12 @@
                                 <?php } ?>
                             </select>
                         </td>
+                        <?php $i=0; ?>
                         <?php
                         foreach($centres as $centre){ ?>
-                            <td><input type="text" name="pourcentage" placeholder="% (en pourcentage)"></td>
-                        <?php }
+                            <td><input type="text" name="pourcentage<?php echo $i;?>[]" placeholder="% (en pourcentage)">
+                            <input type="hidden" name="idcentre[]" value="<?php echo $centre['idcentre']; ?>"></td>
+                        <?php $i++;}
                     ?>
                     </tr>
                 </tbody>
