@@ -13,6 +13,7 @@ class Insert_codeJournal extends CI_Controller {
         // $this->load->view('Insert_CodeJournal');
         $this->template->write('title','Code Journal',TRUE);
         $this->template->write_view('content','Insert_CodeJournal','',TRUE);
+        $this->template->render();
     }
 
      /**
