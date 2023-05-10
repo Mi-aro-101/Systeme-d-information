@@ -5,8 +5,8 @@ class Accueil extends CI_Controller {
 
 
 	public function index(){
-        $this->template->write('title', 'Accueil', TRUE);
-        $this->template->write_view('content', 'Accueil', '', TRUE);
-        $this->template->render();    
-    }
+        $this->template->write('title','Accueil',TRUE);
+        $this->template->write_view('content','Accueil','',TRUE);
+        $this->template->render();
+       }
 }
