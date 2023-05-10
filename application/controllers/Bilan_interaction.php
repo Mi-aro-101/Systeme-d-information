@@ -17,6 +17,7 @@ class Bilan_interaction extends CI_Controller {
         $data['actifNet'] = $actifNet;
         $data['passif'] = $passif;
         // return $data;
+<<<<<<< HEAD
         // $this->load->view('Template');
         // $this->load->view('Actif_result',$data);
         // $this->load->view('Passif_result',$data);
@@ -24,5 +25,10 @@ class Bilan_interaction extends CI_Controller {
         $this->template->write_view('content','Actif_result',$data);
         $this->template->write_view('content','Passif_result',$data);
         $this->template->render();
+=======
+        //$this->load->view('Template');
+        //$this->load->view('Actif_result',$data);
+        //$this->load->view('Passif_result',$data);
+>>>>>>> 3ccd9ab1a667b77f5b6fe2fba95f4f8f3ca1948f
     }
 }
