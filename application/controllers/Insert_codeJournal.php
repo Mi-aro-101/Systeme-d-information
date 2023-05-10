@@ -6,10 +6,14 @@ class Insert_codeJournal extends CI_Controller {
         parent::__construct();
         $this->load->model('Codejournal_model','CodeJournal');
     }
-    
+
     public function index(){
-        $this->template->write('title', 'Code Journal', TRUE);
-        $this->template->write_view('content', 'Insert_CodeJournal', '' ,TRUE);
+
+        // $this->load->view('Template');
+        // $this->load->view('Insert_CodeJournal');
+        $this->template->write('title','Code Journal',TRUE);
+        $this->template->write_view('content','Insert_CodeJournal','',TRUE);
+        $this->template->render();
     }
 
      /**
@@ -20,8 +24,6 @@ class Insert_codeJournal extends CI_Controller {
         $intitule=$this->input->post('intitule');
         $this->CodeJournal->insert($code,$intitule);
         redirect(base_url('index.php/Insert_codeJournal/index'));
-
-
     }
 }
 ?>
