@@ -9,8 +9,8 @@ class Insert_comptable extends CI_Controller {
     }
 
 	public function index()
-	{      
-         $this->template->write('title', 'Code Comptable', TRUE);
+	{
+        $this->template->write('title', 'Code Comptable', TRUE);
         $this->template->write_view('content', 'Insert_Comptable', '' ,TRUE);
 	}
 

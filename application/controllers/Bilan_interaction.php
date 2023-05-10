@@ -8,11 +8,8 @@ class Bilan_interaction extends CI_Controller {
     }
 
     public function index(){
-        // $data=array();
-        $data= $this-> Balance-> getBalance();
-        // return $data;
         $this->template->write('title', 'Bilan', TRUE);
         $this->template->write_view('content', 'Bilan_result', $data);
-        $this->template->render();    
+        $this->template->render();
     }
 }
