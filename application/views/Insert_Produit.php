@@ -1,4 +1,8 @@
 <!-- Sales Overview -->
+<div class="row">
+    <div class="col-offset-3" >
+
+    
 <link rel = "stylesheet" href = <?php echo base_url('css/bootstrap.css');?>>
 <div class="card mt-6">
 
@@ -46,4 +50,6 @@
     </div>
     <!-- end body -->
 
+</div>
+</div>
 </div>

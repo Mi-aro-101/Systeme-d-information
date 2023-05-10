@@ -1,5 +1,6 @@
+<div class="row">
 <div class="col-6">
-<table class="table">
+        <table class="table">
                 <tr>
                     <th>Actif</th>
                     <th>Compte</th>
@@ -112,10 +113,9 @@
                      <td><strong>Total des actifs</strong></td>
                      <td></td>
                      <td> <strong><?php echo number_format($actifBrut['totalActif']); ?></strong></td>
-                     <td> <strong><?php echo number_format($actifBrut['totalActif']- $actifNet['totalActif']); ?></strong></td>
+                     <td></td>
                      <td> <strong><?php echo number_format($actifNet['totalActif']); ?></strong></td>
-
-                </tr>
+                     <td> <strong><?php echo number_format($actifBrut['totalActif']- $actifNet['totalActif']); ?></strong></td>                </tr>
             </table>
 
 </div>
