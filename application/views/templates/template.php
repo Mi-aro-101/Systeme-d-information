@@ -201,7 +201,7 @@
         </div>
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a></span> 
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">by ETU-2020 ETU-2050 ETU-2060</a></span> 
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">y ETU-2020 ETU-2050 ETU-2060</a></span> 
         </div>
     </footer> 
 
