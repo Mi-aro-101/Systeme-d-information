@@ -10,8 +10,13 @@ class Insert_tiers extends CI_Controller {
 
 	public function index()
 	{
-        $this->template->write('title', 'Code Tiers', TRUE);
-        $this->template->write_view('content', 'Insert_Tiers', '' ,TRUE);
+        if ($this->session->flashdata('success_message')) {
+            echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
+        }
+        // $this->load->view('Template');
+		// $this->load->view('Insert_Tiers');
+        $this->template->write('title','Code Tiers',TRUE);
+        $this->template->write_view('content','Insert_Tiers','',TRUE);
 	}
 
     public function checkCode($code){
@@ -33,8 +38,12 @@ class Insert_tiers extends CI_Controller {
             $libelle = $_POST['libelle'];
             echo $code;
             $this->Tiers_model->insertTiers($code, $libelle);
+            $this->session->set_flashdata('success_message', 'Inseree avec succes.');
+            redirect(base_url("index.php/insert_tiers/index"));
         }catch(Exception $e){
-            echo $e->getMessage();
+            $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+            $str1 = sprintf($str1, $e->getMessage());
+            echo $str1;
         }
         return $this->index();
     }
@@ -60,7 +69,9 @@ class Insert_tiers extends CI_Controller {
                 try{
                     $this->checkColumn($data);
                 }catch(Exception $e){
-                    echo $e->getMessage();
+                    $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+                    $str1 = sprintf($str1, $e->getMessage());
+                    echo $str1;
                     break;
                 }
             }
@@ -77,7 +88,9 @@ class Insert_tiers extends CI_Controller {
                 $this->Tiers_model->insertTiers($data[0], $data[1]);
                 $this->db->query('commit');
             }catch(Exception $e){
-                echo $e->getMessage();
+                $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+                $str1 = sprintf($str1, $e->getMessage());
+                echo $str1;
             }
             finally{
                 $this->db->query('end');
