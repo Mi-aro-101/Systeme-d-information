@@ -13,8 +13,10 @@ class Insert_tiers extends CI_Controller {
         if ($this->session->flashdata('success_message')) {
             echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
         }
-        $this->load->view('Template');
-		$this->load->view('Insert_Tiers');
+        // $this->load->view('Template');
+		// $this->load->view('Insert_Tiers');
+        $this->template->write('title','Code Tiers',TRUE);
+        $this->template->write_view('content','Insert_Tiers','',TRUE);
 	}
 
     public function checkCode($code){
