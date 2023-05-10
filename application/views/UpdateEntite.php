@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset = "UTF-8">
-    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = <?php echo base_url('css/bootstrap.css');?>>
-    <title>Formulaire</title>
-</head>
-<body>
-    <center><h2 class="text-capitalize" >Formulaire de Mise a Jour d'Entite</h2></center>
-    <br>
-    <form  method="post" action=<?php echo base_url("index.php/DetailEntite/update");?>>
+<!-- partial -->
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Formulaire de Mise a Jour d'Entite</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                      <form  method="post" action=<?php echo base_url("index.php/DetailEntite/update");?>>
         <div class="row">
             <div class="col-6">
                 <div class="mb-3">
@@ -69,6 +68,13 @@
                 </div>
             </center>
         </div>
-    </form>
-</body>
-</html>
+    </form>                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>

@@ -14,8 +14,9 @@ class Compte_interaction extends CI_Controller {
         }
         $plancomptable = $this->Comptable_model->findAll();
         $data = array('table'=> $plancomptable);
-        $this->load->view('Template');
-        $this->load->view('Comptable', $data);
+        $this->template->write('title', 'Balance', TRUE);
+        $this->template->write_view('content', 'Comptable', $data);
+        $this->template->render();    
     }
 
     public function Supprimer($code){
@@ -26,8 +27,9 @@ class Compte_interaction extends CI_Controller {
     public function Modifier($id){
         $table = $this->Comptable_model->getbyId($id);
         $table = array('table' => $table);
-        $this->load->view('Template');
-        $this->load->view('FormModifCompte', $table);
+        $this->template->write('title', 'Code Comptable', TRUE);
+        $this->template->write_view('content', 'FormModifCompte', $data);
+        $this->template->render();    
     }
 
     /**
@@ -70,8 +72,9 @@ class Compte_interaction extends CI_Controller {
     public function Search(){
         $code= $this->input->post('plansearch');
         $plan= $this->Comptable_model->search($code);
-        $data = array('table' => $plan);
-        $this->load->view('Template');
-        $this-> load->view('Comptable',$data);
+        $data = array('table' => $plan);      
+        $this->template->write('title', 'Code Comptable', TRUE);
+        $this->template->write_view('content', 'Comptable', $data);
+        $this->template->render();    
     }
 }

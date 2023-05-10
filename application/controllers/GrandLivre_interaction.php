@@ -8,8 +8,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         public function index(){
-            $this->load->view('Template');
-            $this->load-> view('GrandLivre');
+            $this->template->write('title', 'Grand Livre', TRUE);
+            $this->template->write_view('content', 'GrandLivre', '' , TRUE);
+            $this->template->render();    
         }
         public function afficher(){
             $code= $this->input->post('plansearch');
@@ -17,6 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $table = array('table' => $livre);
             $this->load->view('Template');
             $this-> load-> view('GrandLivre_result',$table);
+            $this->template->write('title', 'Grand Livre', TRUE);
+            $this->template->write_view('content', 'GrandLivre_result', $data);
         }
 
     }

@@ -5,8 +5,11 @@ class FormEntite extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->view('Template');
+        // $this->load->view('Template');
         $this->load->model('Entite');
+        // $this->template->write('title', 'Entite', TRUE);
+        // $this->template->write_view('content', 'Entite');
+        $this->template->render();    
     }
 
 	public function index(){

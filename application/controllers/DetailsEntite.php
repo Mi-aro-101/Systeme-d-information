@@ -9,8 +9,9 @@ class DetailsEntite extends CI_Controller {
         $id = $this->session->userdata('identity');
         // echo $id;
         $data['values'] = $this->Entite->findAll($id);
-        $this->load->view('Template');
-        $this->load->view('DetailsEntite',$data);
+        $this->template->write('title', 'Detail Entite', TRUE);
+        $this->template->write_view('content', 'DetailEntite', $data);
+        $this->template->render();    
     }
 
     public function pageModif(){
@@ -18,8 +19,9 @@ class DetailsEntite extends CI_Controller {
         $id = $this->session->userdata('identity');
         // echo $id;
         $data['values'] = $this->Entite->findAll($id);
-        $this->load->view('Template');
-        $this->load->view('UpdateEntite',$data);
+        $this->template->write('title', 'Update Entite', TRUE);
+        $this->template->write_view('content', 'UpdateEntite', $data);
+        $this->template->render();    
     }
 
     public function update(){

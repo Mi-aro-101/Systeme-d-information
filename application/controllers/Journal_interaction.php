@@ -21,8 +21,8 @@ class Journal_interaction extends CI_Controller {
         $CodeJournal = $this->Codejournal_model->findAll();
         $Devise = $this->Devise_model->findAll();
         $Total = array('Devise' => $Devise, 'CodeJournal' => $CodeJournal);
-        $this->load->view('Template');
-		$this->load->view('FormJournal', $Total);
+        $this->template->write('title', 'Journal', TRUE);
+        $this->template->write_view('content', 'FormJournal', $Total);
 	}
 
     public function Inserer(){
@@ -39,9 +39,8 @@ class Journal_interaction extends CI_Controller {
                           'produits' => $produits,
                           'centres' => $centres
                         );
-
-            $this->load->view('Template');
-            $this->load->view('Insert_journal', $Total);
+            $this->template->write('title', 'Journal', TRUE);
+            $this->template->write_view('content', 'Insert', $Total);
         } catch (Exception $e) {
             $str1 = '<script language="javascript">alert("%s");window.history.back();</script>';
             $str1 = sprintf($str1, $e->getMessage());

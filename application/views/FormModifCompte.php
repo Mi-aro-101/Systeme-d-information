@@ -18,27 +18,41 @@
     </div>
     <!-- end header -->
 
-    <!-- body -->
-    <div class="card-body grid grid-cols-2 gap-6 lg:grid-cols-1">
-
-        <div class="p-8">
-        <form action="<?php echo base_url('index.php/Compte_interaction/validModification');?>" method="get">
-        <input type="hidden" name="idplancomptable" value="<?php echo $table['idplancomptable']; ?>">
-        <p>Code : <input type="text" name="code" value="<?php echo $table['code'];?>"></p>
-        <p>Intitule : <input type="text" name="intitule" value="<?php echo $table['intitule'];?>"></p>
-        <p><button type='submit'>Submit</button></p>
-    </form>
-        </div>
-    
-        <div class="">
-            <div id="sealsOverview"></div>
-        </div>
-    
-    </div>
-    <!-- end body -->
 
 </div>
 
+<!-- partial -->
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Advanced Table</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
 
-</body>
-</html>
+                    <div >
+                        <form action="<?php echo base_url('index.php/Compte_interaction/validModification');?>" method="get">
+                        <input type="hidden" name="idplancomptable" value="<?php echo $table['idplancomptable']; ?>">
+                        <p>Code : <input type="text" name="code" value="<?php echo $table['code'];?>"></p>
+                        <p>Intitule : <input type="text" name="intitule" value="<?php echo $table['intitule'];?>"></p>
+                        <p><button type='submit'>Submit</button></p>
+                        </form>
+                        </div>
+
+                        <div class="">
+                            <div id="sealsOverview"></div>
+                        </div>
+
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
