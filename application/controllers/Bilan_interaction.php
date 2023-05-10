@@ -16,7 +16,10 @@ class Bilan_interaction extends CI_Controller {
         $data['actifBrut'] = $actifBrut;
         $data['actifNet'] = $actifNet;
         $data['passif'] = $passif;
-
+        // return $data;
+        // $this->load->view('Template');
+        // $this->load->view('Actif_result',$data);
+        // $this->load->view('Passif_result',$data);
         $this->template->write('title','Bilan',TRUE);
         $this->template->write_view('content','Actif_result',$data);
         $this->template->write_view('content','Passif_result',$data);
