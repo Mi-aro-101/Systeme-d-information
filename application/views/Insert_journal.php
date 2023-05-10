@@ -25,10 +25,10 @@
 
     <center><button class="btn btn-warning" onclick="cloneRow()">+</button></center><br>
     <form action="<?php echo base_url('index.php/Journal_interaction/Verifier');?>" method="post">
-        <table class="table ">
+        <h2>Date : <?php echo $date; ?><input type="hidden" name="date" value="<?php echo $date; ?>"></h2>
+        <table class="table">
             <thead class="table-light">
                 <tr>
-                    <th>Date</th>
                     <th>N° de piece</th>
                     <th>Plan comptable</th>
                     <th>Compte tiers</th>
@@ -45,12 +45,11 @@
             </thead>
                 <tbody>
                     <tr>
-                        <td><?php echo $date; ?><input type="hidden" name="date" value="<?php echo $date; ?>"></td>
                         <td><input type="text" name="piece[]" required></td>
                         <td>
                             <select name="Comptable[]" id="">
                                 <?php foreach($plancomptable as $compte) {?>
-                                    <option value="<?php echo $compte['idplancomptable']; ?>"><?php echo $compte['code']; ?></option>
+                                    <option value="<?php echo $compte['idplancomptable']; ?>"><?php echo $compte['code'].' - '.$compte['intitule']; ?></option>
                                 <?php } ?>
                             </select>
                         </td>
