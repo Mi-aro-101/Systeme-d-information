@@ -9,8 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         public function index(){
-            $this->load->view("Template");
-            $this->load->view("Insert_Produit");
+            $this->template->write('title', 'Produit', TRUE);
+            $this->template->write_view('content', 'Insert_Produit');
+            $this->template->render();
             if ($this->session->flashdata('success_message')) {
                 echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
             }
@@ -20,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $nomProduit = $_POST['nomProduit'];
             if(!empty($nomProduit)){
                 $this->Produit_model->inserer($nomProduit);
-                $this->session->set_flashdata('success_message', 'Inseree avec succes.');
+                $this->session->set_flashdata('success_message', 'Produit "'.$nomProduit.'" Inseree avec succes.');
                 redirect(base_url("index.php/produit_interaction/index"));
             }
             else{

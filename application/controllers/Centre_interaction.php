@@ -9,8 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         public function index(){
-            $this->load->view("Template");
-            $this->load->view("Insert_Centre");
+            $this->template->write('title', 'Centre', TRUE);
+            $this->template->write_view('content', 'Insert_Centre');
+            $this->template->render();
             if ($this->session->flashdata('success_message')) {
                 echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
             }
@@ -21,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $nature = $_POST['nature'];
             if(!empty($nomCentre) && !empty($nature)){
                 $this->Centre_model->inserer($nomCentre, $nature);
-                $this->session->set_flashdata('success_message', 'Inseree avec succes.');
+                $this->session->set_flashdata('success_message', 'Centre "'.$nomCentre.'" Inseree avec succes.');
                 redirect(base_url("index.php/centre_interaction/index"));
             }
             else{
