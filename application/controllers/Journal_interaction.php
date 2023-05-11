@@ -23,6 +23,7 @@ class Journal_interaction extends CI_Controller {
         $Total = array('Devise' => $Devise, 'CodeJournal' => $CodeJournal);
         $this->template->write('title', 'Journal', TRUE);
         $this->template->write_view('content', 'FormJournal', $Total);
+        $this->template->render();
 	}
 
     public function Inserer(){
@@ -40,7 +41,8 @@ class Journal_interaction extends CI_Controller {
                           'centres' => $centres
                         );
             $this->template->write('title', 'Journal', TRUE);
-            $this->template->write_view('content', 'Insert', $Total);
+            $this->template->write_view('content', 'Insert_journal', $Total);
+            $this->template->render();
         } catch (Exception $e) {
             $str1 = '<script language="javascript">alert("%s");window.history.back();</script>';
             $str1 = sprintf($str1, $e->getMessage());
@@ -84,18 +86,18 @@ class Journal_interaction extends CI_Controller {
         $Libelle = $_POST['Libelle'];
         $lesDebits = $_POST["Debit"];
         $lesCredits = $_POST["Credit"];
-        
+
         $idCentre = $_POST['idcentre'];
         $idProduit = $_POST['idproduit'];
         $pourcentage = $_POST['pourcentage'];
         $statut = $_POST['statut'];
-    
-        
+
+
         try {
             $this->Equilibrer($lesCredits, $lesDebits);
             for($i = 0 ; $i < count($Comptable) ; $i++){
                 $plancomptable = $this->Comptable_model->getbyId($Comptable);
-                
+
                 if(empty($lesCredits[$i])){ $lesCredits[$i] = 0;}
                 else if(empty($lesDebits[$i])){ $lesDebits[$i] = 0;}
                 if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }

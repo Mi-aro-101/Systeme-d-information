@@ -14,6 +14,7 @@ class Insert_comptable extends CI_Controller {
 		// $this->load->view('Insert_Comptable');
         $this->template->write('title','Code Comptable',TRUE);
         $this->template->write_view('content','Insert_Comptable','',TRUE);
+        $this->template->render();
         if ($this->session->flashdata('success_message')) {
             echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
         }
