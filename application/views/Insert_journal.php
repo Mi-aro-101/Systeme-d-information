@@ -22,11 +22,7 @@
                             <th>Debit</th>
                             <th>Credit</th>
                             <th>Produits</th>
-                            <?php
-                                foreach($centres as $centre){ ?>
-                                    <th><?php echo $centre['nomcentre'];?></th>
-                                <?php }
-                            ?>
+                            <!-- <th>Centres</th> -->
                         </tr>
                           </thead>
                           <tbody>
@@ -55,11 +51,13 @@
                                       <?php } ?>
                                   </select>
                               </td>
-                              <?php
-                              foreach($centres as $centre){ ?>
-                                  <td><input type="text" name="pourcentage" placeholder="% (en pourcentage)"></td>
-                              <?php }
-                          ?>
+                              <td style="color : black" >
+                                <?php
+                                foreach($centres as $centre){ ?>
+                                    <p><?php echo $centre['nomcentre']; ?>:<input type="text" name="pourcentage" placeholder="% (en pourcentage)"></p>
+                                <?php }
+                                ?>
+                              </td>
                         </tr>
                         </tbody>
                       </table>
@@ -74,3 +72,7 @@
         </div>
       </div>
 <script src = <?php echo base_url('js/addLine.js');?>></script>
+<style>
+  input {border:1px solid #d1d6dc; border-radius:3px;}
+  td {color : black;}
+</style>
