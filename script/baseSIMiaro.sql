@@ -1,4 +1,5 @@
 --This script is for the "Compta analytique"
+-- 10 Mai 2023
 create table produit(
     idProduit SERIAL PRIMARY KEY,
     nomProduit VARCHAR(30)

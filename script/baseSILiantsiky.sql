@@ -1,3 +1,19 @@
+--16 May
+--new table
+    --parametre (amboarina)
+create table parametre(
+    idParametre SERIAL PRIMARY KEY,
+    idCentre INT REFERENCES centre(idCentre),
+    idProduit INT REFERENCES produit(idProduit),
+    pourcentage DOUBLE PRECISION,
+    Statut VARCHAR(2), --Fixe['F'] / Variable['V']
+    uniteDoeuvre VARCHAR(30),
+    coutDUnite DOUBLE PRECISION,
+    quantite DOUBLE PRECISION,
+    rubrique VARCHAR(40)
+);
+
+-- 10 May
 --view 
     --join table journal et plancomptable
     create view v_tableau as 
