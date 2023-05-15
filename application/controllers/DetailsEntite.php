@@ -10,8 +10,8 @@ class DetailsEntite extends CI_Controller {
         // echo $id;
         $data['values'] = $this->Entite->findAll($id);
         $this->template->write('title', 'Detail Entite', TRUE);
-        $this->template->write_view('content', 'DetailEntite', $data);
-        $this->template->render();    
+        $this->template->write_view('content', 'DetailsEntite', $data);
+        $this->template->render();
     }
 
     public function pageModif(){
@@ -21,7 +21,7 @@ class DetailsEntite extends CI_Controller {
         $data['values'] = $this->Entite->findAll($id);
         $this->template->write('title', 'Update Entite', TRUE);
         $this->template->write_view('content', 'UpdateEntite', $data);
-        $this->template->render();    
+        $this->template->render();
     }
 
     public function update(){
