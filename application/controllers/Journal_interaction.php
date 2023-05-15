@@ -21,6 +21,11 @@ class Journal_interaction extends CI_Controller {
         $CodeJournal = $this->Codejournal_model->findAll();
         $Devise = $this->Devise_model->findAll();
         $Total = array('Devise' => $Devise, 'CodeJournal' => $CodeJournal);
+
+        if ($this->session->flashdata('success_message')) {
+            echo '<script>alert("' . $this->session->flashdata('success_message') . '");</script>';
+        }
+
         $this->template->write('title', 'Journal', TRUE);
         $this->template->write_view('content', 'FormJournal', $Total);
         $this->template->render();
@@ -83,12 +88,12 @@ class Journal_interaction extends CI_Controller {
             $sum+=intval($_POST['pourcentage'.$i]);
         }
 
-        if($sum != 100){throw new Exception("La repartition par centre n'est pas equilibre ".$sum);}
+        if($sum != 100){throw new Exception("La repartition par centre n'est pas equilibre ");}
 
         // Controle si Cout unite d'oeuvre*quantite != Credit/Debit
         if(intval($credit) == 0){
             if(intval($debit) != $Cout_unite_oeuvre*$Quantite){
-                throw new Exception("Cout d'ouvre et quantite ne correspond pas au debit");
+                throw new Exception("Cout d'ouevre et quantite ne correspond pas au debit");
             }
         }
         else{
@@ -128,37 +133,32 @@ class Journal_interaction extends CI_Controller {
                 else if(empty($lesDebits[$i])){ $lesDebits[$i] = 0;}
                 if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
                 if(empty($piece[$i])){ $piece[$i] = 'null'; }
-                // $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
+                $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
                 if($plancomptable['code'][0] == '6'){
                     $nbrCentre = intval($_POST['Centre_nbr']);
 
-                    try{
-                        $this->Control($nbrCentre, $Cout_unite_oeuvre, $Quantite, $lesCredits[$i], $lesDebits[$i]);
-                    }catch(Exception $ex){
-                        $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
-                        $str1 = sprintf($str1, $ex->getMessage());
-                        echo $str1;
-                    }
+            $this->Control($nbrCentre, $Cout_unite_oeuvre, $Quantite, $lesCredits[$i], $lesDebits[$i]);
 
                     for($j = 0 ; $j < $nbrCentre ; $j++){
                         $lesPourcentages = $_POST['pourcentage'.$j];
-                        // $this->Parametre_model->inserer(
-                        //     $date,
-                        //     $idCentre[$j],
-                        //     $idProduit[$i],
-                        //     $lesPourcentages,
-                        //     $statut,
-                        //     $Unite_oeuvre,
-                        //     $Cout_unite_oeuvre,
-                        //     $Quantite,
-                        //     $Libelle[$i]
-                        // );
+                        $this->Parametre_model->inserer(
+                            $date,
+                            $idCentre[$j],
+                            $idProduit[$i],
+                            $lesPourcentages,
+                            $statut,
+                            $Unite_oeuvre,
+                            $Cout_unite_oeuvre,
+                            $Quantite,
+                            $Libelle[$i]
+                        );
                     }
                 }
             }
 
-            // redirect(base_url("index.php/journal_interaction/index"));
-//
+            $this->session->set_flashdata('success_message', 'Inseree avec succes.');
+            redirect(base_url("index.php/Journal_interaction/index"), 'refresh');
+
         } catch (Exception $e) {
             $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
             $str1 = sprintf($str1, $e->getMessage());
