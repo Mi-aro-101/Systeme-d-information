@@ -102,12 +102,11 @@ class Journal_interaction extends CI_Controller {
                 else if(empty($lesDebits[$i])){ $lesDebits[$i] = 0;}
                 if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
                 if(empty($piece[$i])){ $piece[$i] = 'null'; }
-                $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
+                // $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
                 if(substr($plancomptable[''], 0, 1) == '6'){
                     for($j = 0 ; $j < count($_POST['idcentre']) ; $j++){
                         $lesPourcentages = $_POST['pourcentage'.$j];
                     }
-                    // $this->Parametre_model->inserer();
                 }
             }
 
