@@ -137,7 +137,7 @@ class Journal_interaction extends CI_Controller {
                 if($plancomptable['code'][0] == '6'){
                     $nbrCentre = intval($_POST['Centre_nbr']);
 
-            $this->Control($nbrCentre, $Cout_unite_oeuvre, $Quantite, $lesCredits[$i], $lesDebits[$i]);
+                    $this->Control($nbrCentre, $Cout_unite_oeuvre, $Quantite, $lesCredits[$i], $lesDebits[$i]);
 
                     for($j = 0 ; $j < $nbrCentre ; $j++){
                         $lesPourcentages = $_POST['pourcentage'.$j];
