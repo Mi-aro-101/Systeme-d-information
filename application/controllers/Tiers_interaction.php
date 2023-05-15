@@ -16,6 +16,7 @@ class Tiers_interaction extends CI_Controller {
         $data = array('table'=> $plantiers);
         $this->template->write('title', 'Tiers', TRUE);
         $this->template->write_view('content', 'Tiers', $data);
+        $this->template->render();
     }
 
     public function Supprimer($code){
