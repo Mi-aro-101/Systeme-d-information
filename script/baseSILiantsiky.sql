@@ -3,6 +3,7 @@
     --parametre (amboarina)
 create table parametre(
     idParametre SERIAL PRIMARY KEY,
+    dateparametre DATE,
     idCentre INT REFERENCES centre(idCentre),
     idProduit INT REFERENCES produit(idProduit),
     pourcentage DOUBLE PRECISION,
@@ -14,9 +15,9 @@ create table parametre(
 );
 
 -- 10 May
---view 
+--view
     --join table journal et plancomptable
-    create view v_tableau as 
+    create view v_tableau as
     select c.code codeJournal,c.intitule intitule,j.dateEntree dateentree, j.numpiece numpiece, j.libelle libelle, j.debit debit, j.credit credit
         from journal j
         join plancomptable c on j.idPlanComptable=c.idPlanComptable
@@ -121,4 +122,4 @@ create table parametre(
             SELECT *
                 FROM v_tableau j where codejournal LIKE '491%';
 
-        
+
