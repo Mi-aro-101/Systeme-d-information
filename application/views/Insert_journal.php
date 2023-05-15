@@ -19,6 +19,10 @@
                             <th>Plan comptable</th>
                             <th>Compte tiers</th>
                             <th>Libelle</th>
+                            <th>Statut</th>
+                            <th>Unite d'oeuvre</th>
+                            <th>Cout d'unité d'oeuvre</th>
+                            <th>Quantite</th>
                             <th>Debit</th>
                             <th>Credit</th>
                             <th>Produits</th>
@@ -41,11 +45,18 @@
                                           <option value="<?php echo $tiers['idplantiers']; ?>"><?php echo $tiers['numerocompte']; ?></option>
                                       <?php } ?>
                                   </select></td>
+
                               <td><input type="text" name="Libelle[]" required></td>
+
+                              <td><input type="text" name="Statut" id=""></td>
+                              <td><input type="text" name="Unite_oeuvre"></td>
+                              <td><input type="text" name="Cout_unite_oeuvre"></td>
+                              <td><input type="text" name="Quantite"></td>
+
                               <td><input type="text" name="Debit[]"></td>
                               <td><input type="text" name="Credit[]"></td>
                               <td>
-                                  <select name="Comptable[]" id="">
+                                  <select name="idproduit[]" id="">
                                       <?php foreach($produits as $produit) {?>
                                           <option value="<?php echo $produit['idproduit']; ?>"><?php echo $produit['nomproduit']; ?></option>
                                       <?php } ?>
@@ -53,14 +64,20 @@
                               </td>
                               <td style="color : black" >
                                 <?php
+                                  $i = 0;
                                 foreach($centres as $centre){ ?>
-                                    <p><?php echo $centre['nomcentre']; ?>:<input type="text" name="pourcentage" placeholder="% (en pourcentage)"></p>
+                                    <input type="hidden" name="idcentre[]" value="<?php echo $centre['idcentre']; ?>">
+                                    <?php echo $centre['nomcentre']; ?>:<input type="text" name="<?php echo 'pourcentage'.$i; $i++;?>" placeholder="% (en pourcentage)">
                                 <?php }
                                 ?>
+                                <input type="hidden" name="Centre_nbr" value="<?php echo $i; ?>">
                               </td>
                         </tr>
                         </tbody>
                       </table>
+                      <center><div class="mb-3">
+                                <button class="btn btn-primary" type="submit">Soumettre</button>
+                            </div></center>
                       </div>
                     </div>
                   </div>
@@ -75,4 +92,5 @@
 <style>
   input {border:1px solid #d1d6dc; border-radius:3px;}
   td {color : black;}
+  th {text-align:center;}
 </style>

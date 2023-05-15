@@ -75,6 +75,29 @@ class Journal_interaction extends CI_Controller {
         return true;
     }
 
+    //Controller les valeurs
+    public function Control($nbrCentre, $Cout_unite_oeuvre, $Quantite, $credit, $debit){
+        // Control des pourcentages par centre ;; sum(pourcentage) = 100
+        $sum = 0;
+        for($i = 0 ; $i < $nbrCentre ; $i++){
+            $sum+=intval($_POST['pourcentage'.$i]);
+        }
+
+        if($sum != 100){throw new Exception("La repartition par centre n'est pas equilibre ".$sum);}
+
+        // Controle si Cout unite d'oeuvre*quantite != Credit/Debit
+        if(intval($credit) == 0){
+            if(intval($debit) != $Cout_unite_oeuvre*$Quantite){
+                throw new Exception("Cout d'ouvre et quantite ne correspond pas au debit");
+            }
+        }
+        else{
+            if(intval($credit)!= $Cout_unite_oeuvre*$Quantite){
+                throw new Exception("Cout d'ouvre et quantite ne correspond pas au credit");
+            }
+        }
+    }
+
     //Miassurer hoe tena compte fournisseur ihany na client no tokony hisy compte tiers
 
     public function Verifier(){
@@ -87,31 +110,55 @@ class Journal_interaction extends CI_Controller {
         $lesDebits = $_POST["Debit"];
         $lesCredits = $_POST["Credit"];
 
+        // Pour les charges
         $idCentre = $_POST['idcentre'];
         $idProduit = $_POST['idproduit'];
-        $pourcentage = $_POST['pourcentage'];
-        $statut = $_POST['statut'];
+        $statut = $_POST['Statut'];
+        $Unite_oeuvre = $_POST['Unite_oeuvre'];
+        $Cout_unite_oeuvre = $_POST['Cout_unite_oeuvre'];
+        $Quantite = $_POST['Quantite'];
 
 
         try {
             $this->Equilibrer($lesCredits, $lesDebits);
             for($i = 0 ; $i < count($Comptable) ; $i++){
-                $plancomptable = $this->Comptable_model->getbyId($Comptable);
+                $plancomptable = $this->Comptable_model->getbyId($Comptable[$i]);
 
                 if(empty($lesCredits[$i])){ $lesCredits[$i] = 0;}
                 else if(empty($lesDebits[$i])){ $lesDebits[$i] = 0;}
                 if(empty($Tiers[$i])){ $Tiers[$i] = 'null'; }
                 if(empty($piece[$i])){ $piece[$i] = 'null'; }
                 // $this->Journal_model->insert($date, $piece[$i], $Comptable[$i], $Tiers[$i], $Libelle[$i], $lesDebits[$i], $lesCredits[$i]);
-                if(substr($plancomptable[''], 0, 1) == '6'){
-                    for($j = 0 ; $j < count($_POST['idcentre']) ; $j++){
+                if($plancomptable['code'][0] == '6'){
+                    $nbrCentre = intval($_POST['Centre_nbr']);
+
+                    try{
+                        $this->Control($nbrCentre, $Cout_unite_oeuvre, $Quantite, $lesCredits[$i], $lesDebits[$i]);
+                    }catch(Exception $ex){
+                        $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
+                        $str1 = sprintf($str1, $ex->getMessage());
+                        echo $str1;
+                    }
+
+                    for($j = 0 ; $j < $nbrCentre ; $j++){
                         $lesPourcentages = $_POST['pourcentage'.$j];
+                        // $this->Parametre_model->inserer(
+                        //     $date,
+                        //     $idCentre[$j],
+                        //     $idProduit[$i],
+                        //     $lesPourcentages,
+                        //     $statut,
+                        //     $Unite_oeuvre,
+                        //     $Cout_unite_oeuvre,
+                        //     $Quantite,
+                        //     $Libelle[$i]
+                        // );
                     }
                 }
             }
 
-            redirect(base_url("index.php/journal_interaction/index"));
-
+            // redirect(base_url("index.php/journal_interaction/index"));
+//
         } catch (Exception $e) {
             $str1 = '<script language="javascript">alert("%s"); window.history.back();</script>';
             $str1 = sprintf($str1, $e->getMessage());
