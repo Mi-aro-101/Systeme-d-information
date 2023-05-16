@@ -13,7 +13,23 @@ create table parametre(
     quantite DOUBLE PRECISION,
     rubrique VARCHAR(40)
 );
-
+--views
+    --join parametre and centre
+    create or replace view v_centrexparametre as
+    select  p.idParametre idParametre , p.dateparametre dateparametre, c.idCentre idCentre, c.nomCentre nomCentre,c.nature nature,
+            p.idProduit idProduit, p.pourcentage pourcentage, p.Statut Statut, p.uniteDoeuvre uniteDoeuvre, p.coutDUnite coutDUnite,
+            p.quantite quantite, p.rubrique rubrique
+        from  parametre p
+        join centre c on p.idCentre = c.idCentre
+    -- view ou le statut est fixe :
+    create or replace view v_fixe as
+    select * from v_centrexparametre 
+        where statut = 'F'
+    -- view ou le statut est variable
+     create or replace view v_variable as
+    select * from v_centrexparametre 
+        where statut = 'V'
+    -- 
 -- 10 May
 --view
     --join table journal et plancomptable
